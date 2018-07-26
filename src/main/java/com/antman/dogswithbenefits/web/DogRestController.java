@@ -19,7 +19,7 @@ public class DogRestController {
         this.service = service;
     }
 
-    @GetMapping("/")
+    @GetMapping("/list")
     public List<Dog> getAllDogs(){
         return service.getAllDogs();
     }

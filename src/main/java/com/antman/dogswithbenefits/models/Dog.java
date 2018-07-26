@@ -19,9 +19,9 @@ public class Dog {
     @Column(name = "gender")
     private char gender;
 
-//    @ManyToOne(fetch=FetchType.EAGER)
-//    @JoinColumn(name = "breedid")
-//    private Breed breed;
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name = "breedid")
+    private Breed breed;
 
 //    @ManyToOne
 //    @JoinColumn(name = "secBreedid")
@@ -43,7 +43,7 @@ public class Dog {
         this.userid = userid;
         this.name = name;
         this.gender = gender;
-//        this.breed = breed;
+        this.breed = breed;
 //        this.secondaryBreed = secondaryBreed;
         this.age = age;
         this.weight = weight;
@@ -82,13 +82,13 @@ public class Dog {
         this.gender = gender;
     }
 
-//    public Breed getBreed() {
-//        return breed;
-//    }
-//
-//    public void setBreed(Breed breed) {
-//        this.breed = breed;
-//    }
+    public Breed getBreed() {
+        return breed;
+    }
+
+    public void setBreed(Breed breed) {
+        this.breed = breed;
+    }
 //
 //    public Breed getSecondaryBreed() {
 //        return secondaryBreed;

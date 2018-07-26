@@ -2,6 +2,8 @@ package com.antman.dogswithbenefits.config;
 
 import com.antman.dogswithbenefits.models.Breed;
 import com.antman.dogswithbenefits.models.Dog;
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +17,11 @@ public class AppConfiguration {
                 .addAnnotatedClass(Dog.class)
                 .addAnnotatedClass(Breed.class)
                 .buildSessionFactory();
+    }
+
+    @Bean
+    public Module datatypeHibernateModule() {
+        return new Hibernate4Module();
     }
 
 }

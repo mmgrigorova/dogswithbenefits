@@ -25,6 +25,7 @@ public class DogRepositorySQLImpl implements DogRepository {
         try(Session session = factory.openSession()){
             session.beginTransaction();
             dogs = session.createQuery("FROM Dog").list();
+//            dogs.stream().forEach(dog1 -> System.out.println(dog1.getBreed()));
             session.getTransaction().commit();
         } catch (Exception e){
             e.printStackTrace();

@@ -13,12 +13,12 @@ public class Breed {
     private int id;
 
     @Column(name = "breedname")
-    private int name;
+    private String name;
 
-//    @OneToMany(mappedBy = "breed",
-//            targetEntity = Dog.class,
-//            cascade = CascadeType.ALL)
-//    private List<Dog> dogs = new ArrayList<>();
+    @OneToMany(mappedBy = "breed",
+            targetEntity = Dog.class,
+            cascade = CascadeType.ALL)
+    private List<Dog> dogs;
 
 //    @OneToMany(mappedBy = "secondaryBreed")
 //    private List<Dog> dogSecondary = new ArrayList<>();
@@ -26,7 +26,7 @@ public class Breed {
     public Breed() {
     }
 
-    public Breed(int name) {
+    public Breed(String name) {
         this.name = name;
     }
 
@@ -38,19 +38,19 @@ public class Breed {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
-//
-//    public List<Dog> getDogs() {
-//        return dogs;
-//    }
-//
-//    public void setDogs(List<Dog> dogs) {
-//        this.dogs = dogs;
-//    }
+
+    public List<Dog> getDogs() {
+        return dogs;
+    }
+
+    public void setDogs(List<Dog> dogs) {
+        this.dogs = dogs;
+    }
 }

@@ -1,7 +1,6 @@
 package com.antman.dogswithbenefits.models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,13 +14,11 @@ public class Breed {
     @Column(name = "breedname")
     private String name;
 
-    @OneToMany(mappedBy = "breed",
-            targetEntity = Dog.class,
-            cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "breed")
     private List<Dog> dogs;
 
-//    @OneToMany(mappedBy = "secondaryBreed")
-//    private List<Dog> dogSecondary = new ArrayList<>();
+    @OneToMany(mappedBy = "secondaryBreed")
+    private List<Dog> dogsSecondary;
 
     public Breed() {
     }
@@ -52,5 +49,13 @@ public class Breed {
 
     public void setDogs(List<Dog> dogs) {
         this.dogs = dogs;
+    }
+
+    public List<Dog> getDogsSecondary() {
+        return dogsSecondary;
+    }
+
+    public void setDogsSecondary(List<Dog> dogsSecondary) {
+        this.dogsSecondary = dogsSecondary;
     }
 }

@@ -23,9 +23,9 @@ public class Dog {
     @JoinColumn(name = "breedid")
     private Breed breed;
 
-//    @ManyToOne
-//    @JoinColumn(name = "secBreedid")
-//    private Breed secondaryBreed;
+    @ManyToOne
+    @JoinColumn(name = "secBreedid")
+    private Breed secondaryBreed;
 
     @Column(name = "age")
     private int age;
@@ -89,14 +89,14 @@ public class Dog {
     public void setBreed(Breed breed) {
         this.breed = breed;
     }
-//
-//    public Breed getSecondaryBreed() {
-//        return secondaryBreed;
-//    }
-//
-//    public void setSecondaryBreed(Breed secondaryBreed) {
-//        this.secondaryBreed = secondaryBreed;
-//    }
+
+    public Breed getSecondaryBreed() {
+        return secondaryBreed;
+    }
+
+    public void setSecondaryBreed(Breed secondaryBreed) {
+        this.secondaryBreed = secondaryBreed;
+    }
 
     public int getAge() {
         return age;

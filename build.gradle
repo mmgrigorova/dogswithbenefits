@@ -34,3 +34,7 @@ dependencies {
     compile "com.fasterxml.jackson.datatype:jackson-datatype-hibernate4:2.4.4"
 
 }
+
+bootRun {
+    addResources = true
+}

@@ -39,4 +39,7 @@ dependencies {
     compile group: 'com.googlecode.log4jdbc', name: 'log4jdbc', version: '1.2'
 
     compile "com.fasterxml.jackson.datatype:jackson-datatype-hibernate4:2.4.4"
+
+    // https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa:2.0.1.RELEASE'
 }

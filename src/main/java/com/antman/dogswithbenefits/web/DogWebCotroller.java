@@ -20,8 +20,8 @@ public class DogWebCotroller {
     @GetMapping("/list")
     public ModelAndView listDogs(){
         ModelAndView mav = new ModelAndView("dogs");
+        mav.addObject("title", "Our Dogs");
         mav.addObject("dogs", service.getAllDogs());
-
         return mav;
     }
 }

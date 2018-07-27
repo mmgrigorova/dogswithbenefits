@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-;
-
 @Repository
 public class DogRepositorySQLImpl implements DogRepository {
     private static SessionFactory factory;
@@ -34,5 +32,16 @@ public class DogRepositorySQLImpl implements DogRepository {
         }
 
         return dogs;
+    }
+
+    @Override
+    public void addDog(Dog dog) {
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+            session.save(dog);
+            session.getTransaction().commit();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

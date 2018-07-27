@@ -18,6 +18,11 @@ public class DogServiceImpl implements DogService {
     }
 
     @Override
+    public void addDog(Dog dog) {
+        repository.addDog(dog);
+    }
+
+    @Override
     public List<Dog> getAllDogs() {
         return repository.getAllDogs();
     }

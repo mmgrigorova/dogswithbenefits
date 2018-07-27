@@ -10,7 +10,7 @@ public class Dog {
     @Column(name = "dogid")
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "ownerid")
     private User owner;
 

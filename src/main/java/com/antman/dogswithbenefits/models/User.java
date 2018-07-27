@@ -1,6 +1,9 @@
 package com.antman.dogswithbenefits.models;
 
+import org.hibernate.validator.constraints.EAN;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -28,6 +31,9 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Dog> dogs;
 
 
     public User(){

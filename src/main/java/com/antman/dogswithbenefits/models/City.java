@@ -11,7 +11,7 @@ public class City {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int cityId;
 
-    @Column
+    @Column(name = "cityname")
     private String name;
 
     @ManyToOne

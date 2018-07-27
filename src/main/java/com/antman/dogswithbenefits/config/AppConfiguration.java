@@ -1,7 +1,6 @@
 package com.antman.dogswithbenefits.config;
 
-import com.antman.dogswithbenefits.models.Breed;
-import com.antman.dogswithbenefits.models.Dog;
+import com.antman.dogswithbenefits.models.*;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 import org.hibernate.SessionFactory;
@@ -14,6 +13,10 @@ public class AppConfiguration {
     public SessionFactory createSessionFactory() {
         return new org.hibernate.cfg.Configuration()
                 .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(User.class)
+                .addAnnotatedClass(Address.class)
+                .addAnnotatedClass(City.class)
+                .addAnnotatedClass(Country.class)
                 .addAnnotatedClass(Dog.class)
                 .addAnnotatedClass(Breed.class)
                 .buildSessionFactory();

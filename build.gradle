@@ -32,9 +32,4 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
 
     compile "com.fasterxml.jackson.datatype:jackson-datatype-hibernate4:2.4.4"
-
-}
-
-bootRun {
-    addResources = true
 }

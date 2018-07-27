@@ -10,8 +10,9 @@ public class Dog {
     @Column(name = "dogid")
     private int id;
 
-    @Column(name = "ownerid")
-    private int userid;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "ownerid")
+    private User owner;
 
     @Column(name = "name")
     private String name;
@@ -19,7 +20,7 @@ public class Dog {
     @Column(name = "gender")
     private char gender;
 
-    @ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "breedid")
     private Breed breed;
 
@@ -39,8 +40,8 @@ public class Dog {
     public Dog() {
     }
 
-    public Dog(int userid, String name, char gender, Breed breed, int age, int weight, String description) {
-        this.userid = userid;
+    public Dog(User owner, String name, char gender, Breed breed, int age, int weight, String description) {
+        this.owner = owner;
         this.name = name;
         this.gender = gender;
         this.breed = breed;
@@ -58,12 +59,12 @@ public class Dog {
         this.id = id;
     }
 
-    public int getUserid() {
-        return userid;
+    public User getOwner() {
+        return owner;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     public String getName() {

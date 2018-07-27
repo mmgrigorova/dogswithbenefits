@@ -6,9 +6,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-;
+
 import java.util.ArrayList;
 import java.util.List;
+
+;
 
 @Repository
 public class DogRepositorySQLImpl implements DogRepository {
@@ -25,7 +27,7 @@ public class DogRepositorySQLImpl implements DogRepository {
         try(Session session = factory.openSession()){
             session.beginTransaction();
             dogs = session.createQuery("FROM Dog").list();
-//            dogs.stream().forEach(dog1 -> System.out.println(dog1.getBreed()));
+            dogs.forEach(dog -> dog.getOwner().getFirstName());
             session.getTransaction().commit();
         } catch (Exception e){
             e.printStackTrace();

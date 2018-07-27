@@ -24,4 +24,5 @@ public class DogWebCotroller {
         mav.addObject("dogs", service.getAllDogs());
         return mav;
     }
+
 }

@@ -18,6 +18,11 @@ public class UserRegServiceImpl implements UserRegService {
 
     @Override
     public void addUser(User user) {
-        userRepository.save(newUser);
+       // userRepository.save(newUser);
+    }
+
+    @Override
+    public User getUser(String mail) {
+        return userRepository.findByEmail(mail);
     }
 }

@@ -21,8 +21,4 @@ public class UserRegServiceImpl implements UserRegService {
        // userRepository.save(newUser);
     }
 
-    @Override
-    public User getUser(String mail) {
-        return userRepository.findByEmail(mail);
-    }
 }

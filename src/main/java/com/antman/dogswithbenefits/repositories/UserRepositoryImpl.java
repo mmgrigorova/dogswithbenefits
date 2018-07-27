@@ -4,6 +4,7 @@ import com.antman.dogswithbenefits.models.User;
 import com.antman.dogswithbenefits.repositories.base.UserRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -19,7 +20,10 @@ public class UserRepositoryImpl implements UserRepository {
         try {
             Session session = sessionFactory.openSession();
             session.beginTransaction();
-            user = session.get(User.class, email);
+            Query query= session.createQuery("from User where email=:mail");
+            query.setParameter("mail",email);
+            user = (User)query.uniqueResult();
+
             session.getTransaction().commit();
         }catch (Exception e){e.printStackTrace();}
 

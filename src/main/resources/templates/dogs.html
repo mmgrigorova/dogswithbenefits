@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+<body class="container">
+<nav th:replace="fragments :: navigation"></nav>
+<h1 th:text="${title}" class = "header">List of dogs</h1>
+
+<article class="col-lg-6">
+<table class="table" id="dog-list">
+    <tr>
+        <th>Name</th>
+        <th>Breed</th>
+        <th>Age</th>
+    </tr>
+    <tr th:each="dog : ${dogs}">
+        <td th:text = "${dog.name}"></td>
+        <td th:text = "${dog.breed.name}"></td>
+        <td th:text = "${dog.age}"></td>
+    </tr>
+</table>
+</article>
+<article class="col-lg-6">
+    <div>
+        Dog info
+    </div>
+</article>
+<script src="../script/dogsScript.js"></script>
+</body>
+</html>

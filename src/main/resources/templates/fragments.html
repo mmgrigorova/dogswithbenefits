@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<!--<head th:replace="fragments :: head">-->
-<head>
+<head th:fragment="head">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
     <!-- Latest compiled and minified CSS -->
@@ -10,22 +9,21 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/style.css">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Dogs with Benefits</title>
 </head>
 <body>
-<h1 class = "header">List of dogs</h1>
+<nav th:fragment="navigation">
+    <a href="/index">Home</a> |
+    <a href="/listDogs">List Dogs</a> |
+    <a href="/addDog">Add Dog</a> |
+</nav>
 
 
-<table class="table" id="dog-list">
-    <tr>
-        <th>Name</th>
-        <th>Breed</th>
-        <th>Age</th>
-    </tr>
-</table>
-<script src="script/dogsScript.js"></script>
+
 </body>
 </html>

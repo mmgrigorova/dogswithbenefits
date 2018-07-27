@@ -6,9 +6,11 @@ import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
-public class AppConfiguration {
+public class AppConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public SessionFactory createSessionFactory() {
         return new org.hibernate.cfg.Configuration()
@@ -27,4 +29,15 @@ public class AppConfiguration {
         return new Hibernate4Module();
     }
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler(
+                "/img/**",
+                "/css/**",
+                "/script/**")
+                .addResourceLocations(
+                        "classpath:/static/img/",
+                        "classpath:/static/css/",
+                        "classpath:/static/script/");
+    }
 }

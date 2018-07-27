@@ -1,4 +1,5 @@
 .gradle
+hibernate.cfg.xml
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 

@@ -1,7 +1,5 @@
 package com.antman.dogswithbenefits.models;
 
-import org.hibernate.validator.constraints.EAN;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -39,6 +37,7 @@ public class User {
     public User(){
 
     }
+
 
     public int getUserId() {
         return userId;

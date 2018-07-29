@@ -1,5 +1,6 @@
 package com.antman.dogswithbenefits.repositories;
 
+import com.antman.dogswithbenefits.models.Breed;
 import com.antman.dogswithbenefits.models.Dog;
 import com.antman.dogswithbenefits.repositories.base.DogRepository;
 import org.hibernate.Session;
@@ -43,5 +44,19 @@ public class DogRepositorySQLImpl implements DogRepository {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Breed> getBreeds(){
+        List<Breed> breeds = new ArrayList<>();
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+            breeds = session.createQuery("FROM Breed").list();
+            session.getTransaction().commit();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return breeds;
     }
 }

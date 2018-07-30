@@ -2,6 +2,7 @@ package com.antman.dogswithbenefits.repositories;
 
 import com.antman.dogswithbenefits.models.User;
 import com.antman.dogswithbenefits.repositories.base.UserRepository;
+import com.sun.xml.internal.bind.v2.TODO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -28,5 +29,15 @@ public class UserRepositoryImpl implements UserRepository {
         }catch (Exception e){e.printStackTrace();}
 
         return user;
+    }
+
+    @Override
+    public void saveUser(User user) {
+       try {
+           Session session = sessionFactory.openSession();
+           session.beginTransaction();
+           session.save(user);
+           session.getTransaction().commit();
+       }catch (Exception e){e.printStackTrace();}
     }
 }

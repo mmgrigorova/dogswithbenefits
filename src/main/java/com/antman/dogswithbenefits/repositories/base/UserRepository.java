@@ -7,4 +7,6 @@ import com.antman.dogswithbenefits.models.User;
 public interface UserRepository{
     public User findByEmail(String email);
 
+    public void saveUser(User user);
+
 }

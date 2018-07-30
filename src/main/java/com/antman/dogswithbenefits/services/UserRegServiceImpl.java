@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserRegServiceImpl implements UserRegService {
     private UserRepository userRepository;
-    private User newUser;
 
     @Autowired
     public UserRegServiceImpl(UserRepository userRepository){
         this.userRepository = userRepository;
     }
 
+
     @Override
-    public void addUser(User user) {
-       // userRepository.save(newUser);
+    public void saveUser(User user) {
+       userRepository.saveUser(user);
     }
 
 }

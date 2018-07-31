@@ -43,10 +43,10 @@ public class DogWebCotroller {
     public String processAddDogForm(@ModelAttribute Dog newDog,
                                        Errors errors, Model model) {
 
-//        if (errors.hasErrors()) {
-//            model.addAttribute("title", "Add Dog");
-//            return "dogs/add";
-//        }
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Add Dog");
+            return "dogs/add";
+        }
 
         service.addDog(newDog);
         return "redirect:list";

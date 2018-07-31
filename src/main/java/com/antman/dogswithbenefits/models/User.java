@@ -23,7 +23,7 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "addressid")
     private Address address;
 

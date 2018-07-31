@@ -8,7 +8,7 @@ import java.util.List;
 public class Country {
     @Id
     @Column(name = "countryid")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int countryId;
 
     @Column(name = "countryname")

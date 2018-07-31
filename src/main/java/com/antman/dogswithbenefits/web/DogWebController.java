@@ -9,11 +9,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/dogs")
-public class DogWebCotroller {
+public class DogWebController {
     private DogService service;
 
     @Autowired
-    public DogWebCotroller(DogService service) {
+    public DogWebController(DogService service) {
         this.service = service;
     }
 

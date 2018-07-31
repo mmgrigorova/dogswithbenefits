@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "addresses")
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int addressId;
 
     @Column(name = "streetaddress")
@@ -15,14 +15,12 @@ public class Address {
     @Column(name = "postalcode")
     private String postalCode;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "cityid")
     private City city;
 
     @OneToOne(mappedBy = "address")
     private User user;
-
-
 
     public Address(){
 
@@ -44,12 +42,12 @@ public class Address {
         this.streetAddress = streetAddress;
     }
 
-    public String getPosctCode() {
+    public String getPostalCode() {
         return postalCode;
     }
 
-    public void setPosctCode(String posctCode) {
-        this.postalCode = posctCode;
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
     public City getCity() {

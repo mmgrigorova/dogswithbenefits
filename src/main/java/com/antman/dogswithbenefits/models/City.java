@@ -8,13 +8,13 @@ import java.util.List;
 public class City {
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cityId;
 
     @Column(name = "cityname")
     private String name;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "countryiD")
     private Country country;
 

@@ -20,7 +20,7 @@ public class DogServiceImpl implements DogService {
 
     @Override
     public void addDog(Dog dog) {
-        if(dog.getSecondaryBreed().getId() == 0){
+        if (dog.getSecondaryBreed() == null || dog.getSecondaryBreed().getId() == 0) {
             dog.setSecondaryBreed(null);
         }
         repository.addDog(dog);

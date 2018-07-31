@@ -2,10 +2,9 @@ package com.antman.dogswithbenefits.repositories;
 
 import com.antman.dogswithbenefits.models.User;
 import com.antman.dogswithbenefits.repositories.base.UserRepository;
-import com.sun.xml.internal.bind.v2.TODO;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository

@@ -1,7 +1,12 @@
 body{
-    color: red;
+    color: #2b2b2b;
 }
 
 article{
     display: inline-block;
+}
+
+.display-none{
+    display:none;
+    visibility: hidden;
 }

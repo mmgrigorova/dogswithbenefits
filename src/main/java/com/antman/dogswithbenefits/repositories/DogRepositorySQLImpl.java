@@ -5,6 +5,7 @@ import com.antman.dogswithbenefits.models.Dog;
 import com.antman.dogswithbenefits.repositories.base.DogRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,8 +26,11 @@ public class DogRepositorySQLImpl implements DogRepository {
         List<Dog> dogs = new ArrayList<>();
         try(Session session = factory.openSession()){
             session.beginTransaction();
-            dogs = session.createQuery("FROM Dog").list();
-            dogs.forEach(dog -> dog.getOwner().getFirstName());
+            Query<Dog> query = session.createQuery("FROM Dog");
+            dogs = query.getResultList();
+//            for (Dog dog : dogs) {
+//                String ownername = dog.getOwner().getFirstName();
+//            }
             session.getTransaction().commit();
         } catch (Exception e){
             e.printStackTrace();

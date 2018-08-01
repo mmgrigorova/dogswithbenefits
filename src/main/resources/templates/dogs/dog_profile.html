@@ -5,24 +5,26 @@
 <nav th:replace="fragments :: navigation"></nav>
 <h1 th:text="${title}" class="header">Dog Profile</h1>
 
-<section>
+<section class="clarfix-after clearfix">
     <h2 th:text="${dog.name}"></h2>
 
-    <div th:if="${!dog.photos.isEmpty()}">
-
-        <img th:each="photo : ${dog.photos}" th:src="${photo.path}"/>
-        <!--@{/resources/images/Picture.png}-->
-    </div>
+    <section class="display-block">
+        <div th:if="${!dog.photos.isEmpty()}" th:each="photo : ${dog.photos}"
+             class="profile-image-container inline-block">
+            <img th:src="${photo.path}"/>
+        </div>
+    </section>
 </section>
-
+<div>
 <form method="POST" th:action="@{/upload/(dogId=${dog.id})}" enctype="multipart/form-data">
     <label for="image-upload">Upload Dog Images</label>
     <input type="file" name="file" class="form-control-file-lg"/><br/>
     <input type="submit" value="Upload" class="btn btn-primary" id="image-upload"/>
 </form>
-
+</div>
 <div th:if="${message}">
     <small th:text="${message}"></small>
 </div>
+<th:block th:include="fragments :: assets"></th:block>
 </body>
 </html>

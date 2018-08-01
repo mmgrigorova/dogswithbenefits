@@ -18,6 +18,7 @@ public class AppConfiguration{
                 .addAnnotatedClass(City.class)
                 .addAnnotatedClass(Country.class)
                 .addAnnotatedClass(Dog.class)
+                .addAnnotatedClass(Photo.class)
                 .addAnnotatedClass(Breed.class)
                 .buildSessionFactory();
     }

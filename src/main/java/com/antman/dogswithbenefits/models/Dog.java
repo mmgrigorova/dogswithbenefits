@@ -1,6 +1,7 @@
 package com.antman.dogswithbenefits.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "dogs")
@@ -37,15 +38,18 @@ public class Dog {
     @Column(name = "description")
     private String description;
 
+    @OneToMany(mappedBy = "dog")
+    private List<Photo> photos;
+
     public Dog() {
     }
 
-    public Dog(User owner, String name, char gender, Breed breed, int age, int weight, String description) {
+    public Dog(User owner, String name, char gender, Breed breed, Breed secondaryBreed, int age, int weight, String description) {
         this.owner = owner;
         this.name = name;
         this.gender = gender;
         this.breed = breed;
-//        this.secondaryBreed = secondaryBreed;
+        this.secondaryBreed = secondaryBreed;
         this.age = age;
         this.weight = weight;
         this.description = description;
@@ -121,5 +125,13 @@ public class Dog {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
     }
 }

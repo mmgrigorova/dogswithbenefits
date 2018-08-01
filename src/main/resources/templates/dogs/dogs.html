@@ -14,7 +14,7 @@
         <th>Age</th>
     </tr>
     <tr th:each="dog : ${dogs}">
-        <td> <a th:href="@{dog_profile}" th:text = "*{dog.id}">Profile</a></td>
+        <td> <a th:href="@{/dogs/dog_profile(dogId=${dog.id})}" th:text = "Profile">Profile</a></td>
         <td th:text = "${dog.name}"></td>
         <td th:text = "${dog.breed.name}"></td>
         <td th:text = "${dog.age}"></td>

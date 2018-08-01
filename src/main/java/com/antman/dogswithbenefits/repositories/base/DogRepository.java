@@ -9,5 +9,6 @@ public interface DogRepository {
     List<Dog> getAllDogs();
     void addDog(Dog dog);
     Dog findById(int id);
+    void update(Dog updateDog);
     List<Breed> getBreeds();
 }

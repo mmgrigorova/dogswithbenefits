@@ -9,6 +9,7 @@ public interface DogService {
     void addDog(Dog dog);
     List<Dog> getAllDogs();
     Dog fingById(int id);
+    Dog update(Dog dog);
     List<Breed> getBreeds();
 
 }

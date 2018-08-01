@@ -37,6 +37,13 @@ public class DogServiceImpl implements DogService {
     }
 
     @Override
+    public Dog update(Dog dog) {
+        repository.update(dog);
+        Dog result = fingById(dog.getId());
+        return result;
+    }
+
+    @Override
     public List<Breed> getBreeds() {
         return repository.getBreeds();
     }

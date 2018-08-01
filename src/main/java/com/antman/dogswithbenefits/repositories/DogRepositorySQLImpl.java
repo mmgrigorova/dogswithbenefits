@@ -29,9 +29,6 @@ public class DogRepositorySQLImpl implements DogRepository {
             session.beginTransaction();
             Query query = session.createQuery("FROM Dog");
             dogs = query.list();
-            for (Dog dog : dogs) {
-                dog.getOwner().getFirstName();
-            }
             session.getTransaction().commit();
             session.close();
         } catch (Exception e){
@@ -61,6 +58,7 @@ public class DogRepositorySQLImpl implements DogRepository {
             Session session = factory.openSession();
             session.beginTransaction();
             dog = (Dog) session.get(Dog.class, id);
+            dog.getOwner().getFirstName();
             session.getTransaction().commit();
             session.close();
         } catch (Exception e){
@@ -68,6 +66,19 @@ public class DogRepositorySQLImpl implements DogRepository {
         }
 
         return dog;
+    }
+
+    @Override
+    public void update(Dog updateDog) {
+        try{
+            Session session = factory.openSession();
+            session.beginTransaction();
+            session.saveOrUpdate(updateDog);
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override

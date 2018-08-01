@@ -27,5 +27,9 @@ public class DogRestController {
         service.addDog(dog);
     }
 
+    @PutMapping("/update")
+    public Dog updateDog(@RequestBody Dog dog){
+        return service.update(dog);
+    }
 
 }

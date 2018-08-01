@@ -18,6 +18,14 @@ article{
     display: inline-block;
 }
 
+.error{
+    color: red;
+}
+
+.success{
+    color: forestgreen;
+}
+
 .display-none{
     display:none;
     visibility: hidden;

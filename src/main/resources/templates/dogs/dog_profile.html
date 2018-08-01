@@ -23,7 +23,10 @@
 </form>
 </div>
 <div th:if="${message}">
-    <small th:text="${message}"></small>
+    <small th:text="${message}" class="success"></small>
+</div>
+<div th:if="${errormessage}">
+    <small th:text="${errormessage}" class="error"></small>
 </div>
 <th:block th:include="fragments :: assets"></th:block>
 </body>

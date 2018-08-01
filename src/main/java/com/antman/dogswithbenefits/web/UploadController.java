@@ -43,7 +43,7 @@ public class UploadController {
         System.out.println("---->>> HTTP VIEW: " + viewName);
 
         if (file.isEmpty()) {
-            redirectAttributes.addFlashAttribute("message", "Please select an image to upload");
+            redirectAttributes.addFlashAttribute("errormessage", "Please select an image to upload");
             return redirectionPath;
         }
 

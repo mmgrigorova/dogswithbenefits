@@ -2,6 +2,7 @@ package com.antman.dogswithbenefits.services;
 
 import com.antman.dogswithbenefits.models.Breed;
 import com.antman.dogswithbenefits.models.Dog;
+import com.antman.dogswithbenefits.repositories.base.BreedRepository;
 import com.antman.dogswithbenefits.repositories.base.DogRepository;
 import com.antman.dogswithbenefits.services.base.DogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,13 @@ import java.util.List;
 
 @Service
 public class DogServiceImpl implements DogService {
-    private DogRepository repository;
+    private DogRepository dogRepository;
+    private BreedRepository breedRepository;
 
     @Autowired
-    public DogServiceImpl(DogRepository repository) {
-        this.repository = repository;
+    public DogServiceImpl(DogRepository dogRepository, BreedRepository breedRepository) {
+        this.dogRepository = dogRepository;
+        this.breedRepository = breedRepository;
     }
 
     @Override
@@ -23,16 +26,18 @@ public class DogServiceImpl implements DogService {
         if (dog.getSecondaryBreed() == null || dog.getSecondaryBreed().getId() == 0) {
             dog.setSecondaryBreed(null);
         }
-        repository.addDog(dog);
+        dogRepository.save(dog);
     }
 
     @Override
     public List<Dog> getAllDogs() {
-        return repository.getAllDogs();
+        Iterable<Dog> allDogs = dogRepository.findAll();
+        return Utilities.makeCollection(allDogs);
     }
 
     @Override
     public List<Breed> getBreeds() {
-        return repository.getBreeds();
+        Iterable<Breed> allBreeds = breedRepository.findAll();
+        return Utilities.makeCollection(allBreeds);
     }
 }

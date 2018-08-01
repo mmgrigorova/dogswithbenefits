@@ -8,8 +8,8 @@
 <section>
     <h2 th:text="${dog.name}"></h2>
 
-    <div>
-        <img th:src="${dog.photos[0].getPath()}">
+    <div th:if="${!dog.photos.isEmpty()}">
+        <img th:src="${dog.photos[0].getPath()}"/>
     </div>
 </section>
 

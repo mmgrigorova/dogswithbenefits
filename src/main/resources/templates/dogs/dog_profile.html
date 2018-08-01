@@ -9,7 +9,9 @@
     <h2 th:text="${dog.name}"></h2>
 
     <div th:if="${!dog.photos.isEmpty()}">
-        <img th:src="${dog.photos[0].getPath()}"/>
+
+        <img th:each="photo : ${dog.photos}" th:src="${photo.path}"/>
+        <!--@{/resources/images/Picture.png}-->
     </div>
 </section>
 

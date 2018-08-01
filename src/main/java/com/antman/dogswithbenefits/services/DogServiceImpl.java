@@ -32,6 +32,11 @@ public class DogServiceImpl implements DogService {
     }
 
     @Override
+    public Dog fingById(int id) {
+        return repository.findById(id);
+    }
+
+    @Override
     public List<Breed> getBreeds() {
         return repository.getBreeds();
     }

@@ -50,8 +50,13 @@ public class DogWebController {
     }
 
     @GetMapping("/dog_profile")
-    public String uploadIndex(@RequestParam("dogId") int dogId){
+    public ModelAndView uploadIndex(@RequestParam("dogId") int dogId){
+        Dog dog = service.fingById(dogId);
+        ModelAndView mav = new ModelAndView("dogs/dog_profile");
 
-        return "dogs/dog_profile";
+        mav.addObject("dog", dog);
+        mav.addObject("title", dog.getName());
+
+        return mav;
     }
 }

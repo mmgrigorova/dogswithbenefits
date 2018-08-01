@@ -55,6 +55,22 @@ public class DogRepositorySQLImpl implements DogRepository {
     }
 
     @Override
+    public Dog findById(int id) {
+        Dog dog = null;
+        try{
+            Session session = factory.openSession();
+            session.beginTransaction();
+            dog = (Dog) session.get(Dog.class, id);
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return dog;
+    }
+
+    @Override
     public List<Breed> getBreeds(){
         List<Breed> breeds = new ArrayList<>();
         try{

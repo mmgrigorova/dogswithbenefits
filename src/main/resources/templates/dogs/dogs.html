@@ -20,6 +20,13 @@
         <td th:text = "${dog.age}"></td>
     </tr>
 </table>
+
+    <div th:each="data, row: ${dogs}" th:with="numList=${ {3,2,1,0} }" th:if="${row.count % 4 == 0 or row.last}" class="row">
+        <!-- Show all rows except the leftovers -->
+        <span th:each="num : ${numList}" th:with="dataIndex=(${row.index} - ${num})" th:if="${row.count % 4 == 0}" th:text="${dogs[dataIndex].name}">data</span>
+        <!-- Show the remainders (eg, if there are 9 items, the last row will have one item in it) -->
+        <span th:each="num : ${numList}" th:with="dataIndex=(${row.index} - ${num})" th:if="${row.last} and ${row.count % 4 != 0} and ${num &lt; row.count % 4}" th:text="${dogs[dataIndex].name}">data</span>
+    </div>
 </article>
 <article class="col-lg-6">
     <div>

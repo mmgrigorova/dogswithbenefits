@@ -7,12 +7,12 @@
 
 <form method="POST" action="/upload" enctype="multipart/form-data">
     <label for="image-upload">Upload Dog Images</label>
-    <input type="file" name="file" class="form-control-file-lg"/>
+    <input type="file" name="file" class="form-control-file-lg"/><br/>
     <input type="submit" value="Upload" class="btn btn-primary" id="image-upload"/>
 </form>
 
 <div th:if="${message}">
-    <h2 th:text="${message}"></h2>
+    <small th:text="${message}"></small>
 </div>
 </body>
 </html>

@@ -51,4 +51,9 @@ public class DogWebController {
         service.addDog(newDog);
         return "redirect:list";
     }
+
+    @GetMapping("/dog_profile")
+    public String uploadIndex(){
+        return "dogs/dog_profile";
+    }
 }

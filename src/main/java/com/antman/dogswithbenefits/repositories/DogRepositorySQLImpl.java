@@ -2,6 +2,7 @@ package com.antman.dogswithbenefits.repositories;
 
 import com.antman.dogswithbenefits.models.Breed;
 import com.antman.dogswithbenefits.models.Dog;
+import com.antman.dogswithbenefits.models.Photo;
 import com.antman.dogswithbenefits.repositories.base.DogRepository;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class DogRepositorySQLImpl implements DogRepository {
+public class DogRepositorySQLImpl<T> implements DogRepository {
     private static SessionFactory factory;
 
     @Autowired
@@ -38,17 +39,21 @@ public class DogRepositorySQLImpl implements DogRepository {
         return dogs;
     }
 
-    @Override
-    public void addDog(Dog dog) {
+    private void addEntity(T t){
         try{
             Session session = factory.openSession();
             session.beginTransaction();
-            session.save(dog);
+            session.save(t);
             session.getTransaction().commit();
             session.close();
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void addDog(Dog dog) {
+        addEntity((T) dog);
     }
 
     @Override
@@ -80,6 +85,11 @@ public class DogRepositorySQLImpl implements DogRepository {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void addPhoto(Photo photo) {
+        addEntity((T) photo);
     }
 
     @Override

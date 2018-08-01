@@ -15,7 +15,7 @@
     </div>
 </section>
 
-<form method="POST" action="/upload" enctype="multipart/form-data">
+<form method="POST" th:action="@{/upload/(dogId=${dog.id})}" enctype="multipart/form-data">
     <label for="image-upload">Upload Dog Images</label>
     <input type="file" name="file" class="form-control-file-lg"/><br/>
     <input type="submit" value="Upload" class="btn btn-primary" id="image-upload"/>

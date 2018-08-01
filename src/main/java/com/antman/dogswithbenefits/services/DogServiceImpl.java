@@ -2,6 +2,7 @@ package com.antman.dogswithbenefits.services;
 
 import com.antman.dogswithbenefits.models.Breed;
 import com.antman.dogswithbenefits.models.Dog;
+import com.antman.dogswithbenefits.models.Photo;
 import com.antman.dogswithbenefits.repositories.base.DogRepository;
 import com.antman.dogswithbenefits.services.base.DogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,11 @@ public class DogServiceImpl implements DogService {
         repository.update(dog);
         Dog result = fingById(dog.getId());
         return result;
+    }
+
+    @Override
+    public void addPhoto(Photo photo) {
+        repository.addPhoto(photo);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.antman.dogswithbenefits.services.base;
 
 import com.antman.dogswithbenefits.models.Breed;
 import com.antman.dogswithbenefits.models.Dog;
+import com.antman.dogswithbenefits.models.Photo;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ public interface DogService {
     List<Dog> getAllDogs();
     Dog fingById(int id);
     Dog update(Dog dog);
+    void addPhoto(Photo photo);
     List<Breed> getBreeds();
 
 }

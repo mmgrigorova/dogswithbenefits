@@ -23,6 +23,8 @@ public class DogRestController {
         return service.getAllDogs();
     }
 
+    @GetMapping("{}")
+
     @PostMapping("/add")
     public void addDog(@RequestBody Dog dog){
         service.addDog(dog);
@@ -33,8 +35,8 @@ public class DogRestController {
         return service.update(dog);
     }
 
-    @GetMapping("/photos")
-    public List<Photo> getDogPhotos(@RequestParam(name = "dogId") int dogId){
+    @GetMapping("/photos/{dogId}")
+    public List<Photo> getDogPhotos(@PathVariable(name = "dogId") int dogId){
         Dog dog = service.fingById(dogId);
         return service.getDogPhotos(dog);
     }

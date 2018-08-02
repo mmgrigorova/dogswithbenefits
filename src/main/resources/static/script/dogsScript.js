@@ -12,12 +12,11 @@ $(document).ready(function () {
         $.getJSON(url,
             function (data) {
                 console.log("in success");
-                $.each(data, function (key, value) {
-                    var $img = $('<img/>')
-                        .attr("src", value.path)
-                        .attr("alt", "photo" + value.path);
-                    console.log($img);
-                    $("#profile-image-container").append($img);
+                $.each(data, function (index, photo) {
+                    var $imgRow = $("<img />")
+                        .attr("src", photo.path)
+                        .attr("alt", "photo" + photo.path);
+                    $(".profile-image-container").append($imgRow);
 
                 })
             }, function (xhr, status, error) {
@@ -27,6 +26,5 @@ $(document).ready(function () {
 
             "jsonp")
     };
-
     dogPhotos(dogId);
 });

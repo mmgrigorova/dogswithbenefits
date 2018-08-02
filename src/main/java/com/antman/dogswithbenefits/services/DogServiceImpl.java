@@ -34,7 +34,14 @@ public class DogServiceImpl implements DogService {
 
     @Override
     public Dog fingById(int id) {
-        return repository.findById(id);
+        Dog dog;
+        try {
+           dog = repository.findById(id);
+        } catch (NullPointerException e){
+            System.out.println("There is no dog with id " + id);
+            return null;
+        }
+        return dog;
     }
 
     @Override

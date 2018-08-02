@@ -57,12 +57,15 @@ public class DogRepositorySQLImpl<T> implements DogRepository {
     }
 
     @Override
-    public Dog findById(int id) {
+    public Dog findById(int id) throws NullPointerException {
         Dog dog = null;
         try{
             Session session = factory.openSession();
             session.beginTransaction();
             dog = (Dog) session.get(Dog.class, id);
+            if (dog == null){
+                throw new NullPointerException();
+            }
             dog.getOwner().getFirstName();
             dog.getPhotos().forEach(photo -> photo.getPath());
             session.getTransaction().commit();
@@ -98,7 +101,9 @@ public class DogRepositorySQLImpl<T> implements DogRepository {
         try{
             Session session = factory.openSession();
             session.beginTransaction();
-            Query query = session.createQuery("FROM Photo");
+            String hql = "FROM Photo WHERE dogId = :dogId";
+            Query query = session.createQuery(hql)
+                    .setParameter("dogId", dog.getId());
             photos = query.list();
             session.getTransaction().commit();
             session.close();

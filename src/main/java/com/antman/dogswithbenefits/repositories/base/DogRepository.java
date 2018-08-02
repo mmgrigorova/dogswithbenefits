@@ -9,7 +9,7 @@ import java.util.List;
 public interface DogRepository {
     List<Dog> getAllDogs();
     void addDog(Dog dog);
-    Dog findById(int id);
+    Dog findById(int id) throws NullPointerException;
     void update(Dog updateDog);
     void addPhoto(Photo photo);
     List<Photo> getDogPhotos(Dog dog);

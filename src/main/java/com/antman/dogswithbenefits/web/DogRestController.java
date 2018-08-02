@@ -19,25 +19,37 @@ public class DogRestController {
     }
 
     @GetMapping("/list")
-    public List<Dog> getAllDogs(){
+    public List<Dog> getAllDogs() {
         return service.getAllDogs();
     }
 
-    @GetMapping("{}")
+    @GetMapping("/{dogId}")
+    public Dog getDog(@PathVariable(name = "dogId") int dogId) {
+        return service.fingById(dogId);
+    }
 
     @PostMapping("/add")
-    public void addDog(@RequestBody Dog dog){
+    public void addDog(@RequestBody Dog dog) {
         service.addDog(dog);
     }
 
     @PutMapping("/update")
-    public Dog updateDog(@RequestBody Dog dog){
+    public Dog updateDog(@RequestBody Dog dog) {
         return service.update(dog);
     }
 
     @GetMapping("/photos/{dogId}")
-    public List<Photo> getDogPhotos(@PathVariable(name = "dogId") int dogId){
-        Dog dog = service.fingById(dogId);
-        return service.getDogPhotos(dog);
+    public List<Photo> getDogPhotos(@PathVariable(name = "dogId") int dogId) {
+        Dog dog = null;
+        List<Photo> photos;
+
+        dog = service.fingById(dogId);
+        if (dog == null) {
+            System.out.println("No dog with Id = " + dogId + " exists.");
+            return null;
+        }
+        photos = service.getDogPhotos(dog);
+
+        return photos;
     }
 }

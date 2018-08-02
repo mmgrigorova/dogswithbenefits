@@ -93,6 +93,23 @@ public class DogRepositorySQLImpl<T> implements DogRepository {
     }
 
     @Override
+    public List<Photo> getDogPhotos(Dog dog) {
+        List<Photo> photos = new ArrayList<>();
+        try{
+            Session session = factory.openSession();
+            session.beginTransaction();
+            Query query = session.createQuery("FROM Photo");
+            photos = query.list();
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return photos;
+    }
+
+    @Override
     public List<Breed> getBreeds(){
         List<Breed> breeds = new ArrayList<>();
         try{

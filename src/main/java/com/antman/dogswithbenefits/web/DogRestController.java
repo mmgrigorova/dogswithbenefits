@@ -1,6 +1,7 @@
 package com.antman.dogswithbenefits.web;
 
 import com.antman.dogswithbenefits.models.Dog;
+import com.antman.dogswithbenefits.models.Photo;
 import com.antman.dogswithbenefits.services.base.DogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,4 +33,9 @@ public class DogRestController {
         return service.update(dog);
     }
 
+    @GetMapping("/photos")
+    public List<Photo> getDogPhotos(@RequestParam(name = "dogId") int dogId){
+        Dog dog = service.fingById(dogId);
+        return service.getDogPhotos(dog);
+    }
 }

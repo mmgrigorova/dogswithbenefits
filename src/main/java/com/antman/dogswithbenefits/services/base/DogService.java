@@ -12,6 +12,7 @@ public interface DogService {
     Dog fingById(int id);
     Dog update(Dog dog);
     void addPhoto(Photo photo);
+    List<Photo> getDogPhotos(Dog dog);
     List<Breed> getBreeds();
 
 }

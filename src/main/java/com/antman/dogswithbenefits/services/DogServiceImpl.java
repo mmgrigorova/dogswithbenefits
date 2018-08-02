@@ -50,6 +50,11 @@ public class DogServiceImpl implements DogService {
     }
 
     @Override
+    public List<Photo> getDogPhotos(Dog dog) {
+        return repository.getDogPhotos(dog);
+    }
+
+    @Override
     public List<Breed> getBreeds() {
         return repository.getBreeds();
     }

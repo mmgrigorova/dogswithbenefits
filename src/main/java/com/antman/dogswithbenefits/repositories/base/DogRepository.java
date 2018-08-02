@@ -12,5 +12,6 @@ public interface DogRepository {
     Dog findById(int id);
     void update(Dog updateDog);
     void addPhoto(Photo photo);
+    List<Photo> getDogPhotos(Dog dog);
     List<Breed> getBreeds();
 }

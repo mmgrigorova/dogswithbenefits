@@ -4,7 +4,8 @@ $(document).ready(function () {
     var dogId;
 
 
-    var dogPhotos = function (dogId) {
+    var getPhotos = function (dogId) {
+        $(".profile-image-container").empty();
         dogId = $(".profile-image-container").attr('id').replace("profile-image-container_", "");
         var url = "/api/photos/" + dogId;
         console.log(dogId);
@@ -13,10 +14,13 @@ $(document).ready(function () {
             function (data) {
                 console.log("in success");
                 $.each(data, function (index, photo) {
+                    var $imageSpan = $("<span />")
+                        .attr("class", "imageSpan");
                     var $imgRow = $("<img />")
                         .attr("src", photo.path)
                         .attr("alt", "photo" + photo.path);
-                    $(".profile-image-container").append($imgRow);
+                    $imageSpan.append($imgRow);
+                    $(".profile-image-container").append($imageSpan);
 
                 })
             }, function (xhr, status, error) {
@@ -26,5 +30,6 @@ $(document).ready(function () {
 
             "jsonp")
     };
-    dogPhotos(dogId);
+
+    getPhotos(dogId);
 });

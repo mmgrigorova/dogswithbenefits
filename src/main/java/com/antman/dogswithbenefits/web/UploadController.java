@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -28,14 +27,12 @@ public class UploadController {
     public UploadController(DogService dogService) {
         this.dogService = dogService;
     }
-
     @PostMapping("/upload")
-    @ResponseBody
-    public Model singleFileUpload(@RequestParam("file") MultipartFile file,
-                                  @RequestParam("dogId") int dogId,
-                                  HttpServletRequest request,
-                                  RedirectAttributes redirectAttributes,
-                                  Model model) {
+    public String singleFileUpload(@RequestParam("file") MultipartFile file,
+                                   @RequestParam("dogId") int dogId,
+                                   HttpServletRequest request,
+                                   RedirectAttributes redirectAttributes,
+                                   Model model) {
 
         String referer = request.getHeader("referer");
         String origin = request.getHeader("origin");
@@ -45,15 +42,15 @@ public class UploadController {
         System.out.println("---->>> HTTP VIEW: " + viewName);
 
         if (file.isEmpty()) {
-            model.addAttribute("errormessage", "Please select an image to upload");
-            return model;
+            redirectAttributes.addFlashAttribute("errormessage", "Please select an image to upload");
+            return redirectionPath;
         }
 
         try {
             byte[] bytes = file.getBytes();
             Path path = Paths.get(UPLOAD_FOLDER + file.getOriginalFilename());
             Files.write(path, bytes);
-            model.addAttribute("message", "You successfully uploaded '" +
+            redirectAttributes.addFlashAttribute("message", "You successfully uploaded '" +
                     file.getOriginalFilename() + "'");
 
             Dog dog = dogService.fingById(dogId);
@@ -63,7 +60,7 @@ public class UploadController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return model;
-    }
 
+        return redirectionPath;
+    }
 }

@@ -9,9 +9,12 @@
     <h2 th:text="${dog.name}"></h2>
 
     <section class="display-block">
-        <div th:if="${!dog.photos.isEmpty()}" th:each="photo : ${dog.photos}"
-             class="profile-image-container inline-block">
-            <img th:src="${photo.path}"/>
+        <div th:if="${!dog.photos.isEmpty()}"
+             class="profile-image-container inline-block" th:id="'profile-image-container_' + ${dog.id}">
+
+        </div>
+        <div th:if="${dog.photos.isEmpty()}" class="no-image-container inline-block">
+            <p>There are no images of <span th:text="${dog.name}"></span> yet.</p>
         </div>
     </section>
 </section>

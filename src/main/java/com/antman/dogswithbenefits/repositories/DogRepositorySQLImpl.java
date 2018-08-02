@@ -101,10 +101,7 @@ public class DogRepositorySQLImpl<T> implements DogRepository {
         try{
             Session session = factory.openSession();
             session.beginTransaction();
-            String hql = "FROM Photo WHERE dogId = :dogId";
-            Query query = session.createQuery(hql)
-                    .setParameter("dogId", dog.getId());
-            photos = query.list();
+            photos = dog.getPhotos();
             session.getTransaction().commit();
             session.close();
         } catch (Exception e){

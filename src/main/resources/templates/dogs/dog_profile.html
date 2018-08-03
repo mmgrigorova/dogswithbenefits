@@ -14,6 +14,12 @@
             <img th:src="${photo.path}"/>
         </div>
     </section>
+    <section>
+        <p th:text="${dog.name}"></p>
+        <p th:text="${dog.breed.name}"></p>
+        <p th:text="${dog.age}"></p>
+        <p th:text="${dog.owner.firstName}"></p>
+    </section>
 </section>
 <div>
 <form method="POST" th:action="@{/attach/(dogId=${dog.id})}" th:object="${newPhoto}" enctype="multipart/form-data">

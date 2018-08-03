@@ -16,10 +16,13 @@
     </section>
 </section>
 <div>
-<form method="POST" th:action="@{/upload/(dogId=${dog.id})}" enctype="multipart/form-data">
-    <label for="image-upload">Upload Dog Images</label>
-    <input type="file" name="file" class="form-control-file-lg"/><br/>
-    <input type="submit" value="Upload" class="btn btn-primary" id="image-upload"/>
+<form method="POST" th:action="@{/attach/(dogId=${dog.id})}" th:object="${newPhoto}" enctype="multipart/form-data">
+    <label th:for="image-upload">Attach Dog Images</label><br/>
+    <input type="text" th:name="*{path}" th:field="*{path}" name="path" class="form-control-md" size="50"/>
+    <small id="fileHelp" class="form-text text-muted">Please insert the URL of your doggy's image</small>
+    <br/>
+    <input th:type="hidden" th:name ="${dog.id}" th:value="${dog.id}">
+    <input type="submit" value="Attach"  class="btn btn-primary" id="image-upload"/>
 </form>
 </div>
 <div th:if="${message}">

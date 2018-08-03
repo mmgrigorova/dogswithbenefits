@@ -1,6 +1,7 @@
 package com.antman.dogswithbenefits.web;
 
 import com.antman.dogswithbenefits.models.Dog;
+import com.antman.dogswithbenefits.models.Photo;
 import com.antman.dogswithbenefits.services.base.DogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,12 +51,13 @@ public class DogWebController {
     }
 
     @GetMapping("/dog_profile")
-    public ModelAndView uploadIndex(@RequestParam("dogId") int dogId){
+    public ModelAndView dogProfileIndex(@RequestParam("dogId") int dogId){
         Dog dog = service.fingById(dogId);
         ModelAndView mav = new ModelAndView("dogs/dog_profile");
 
         mav.addObject("dog", dog);
         mav.addObject("title", dog.getName());
+        mav.addObject("newPhoto", new Photo(dog, null));
 
         return mav;
     }

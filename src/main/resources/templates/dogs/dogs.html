@@ -15,7 +15,7 @@
                   class="col-sm-3 border-bottom">
                 <a th:href="@{/dogs/dog_profile(dogId=${dogs[dataIndex].id})}">
                     <div class="doggy-thumbnail">
-                        <img th:src="${dogs[dataIndex].photos[0].path}" th:if="${!dogs[dataIndex].photos.isEmpty()}"/>
+                        <img th:src="${dogs[dataIndex].photos[0].path}" th:if="${!dogs[dataIndex].photos.isEmpty()}" class="rounded-circle"/>
                         <p th:text="${dogs[dataIndex].name}">Doggy name</p>
                         <p th:text="${dogs[dataIndex].breed.name}"></p>
                         <p th:text="${dog.age}"></p>
@@ -28,7 +28,7 @@
                   class="col-sm-3 border-bottom">
                   <a th:href="@{/dogs/dog_profile(dogId=${dogs[dataIndex].id})}">
                     <div class="doggy-thumbnail">
-                        <img th:src="${dogs[dataIndex].photos[0].path}" th:if="${!dogs[dataIndex].photos.isEmpty()}"/>
+                        <img th:src="${dogs[dataIndex].photos[0].path}" th:if="${!dogs[dataIndex].photos.isEmpty()}" class="rounded-circle"/>
                         <p th:text="${dogs[dataIndex].name}">Doggy name</p>
                         <p th:text="${dogs[dataIndex].breed.name}"></p>
                         <p th:text="${dog.age}"></p>

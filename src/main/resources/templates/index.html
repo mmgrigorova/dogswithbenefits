@@ -2,15 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
 </head>
-<body>
-<nav th:fragment="navigation">
-    <a href="index.html">Home</a> |
-    <a href="/dogs/list">List Dogs</a> |
-    <a href="addDog.html">Add Dog</a> |
-    <a href="/registration">Register User</a> |
-</nav>
+<body >
+<nav th:replace="fragments :: navigation"></nav>
+<div class="jumbotron text-center main-image">
 
+    <h1 th:text="${title}" class="header">Dogs with Benefits</h1>
+    <h2>The number one dog dating website!</h2>
+</div>
 
-
+<section class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Dogs</h3>
+            <p>See all the dogs that we have on file</p>
+        </div>
+        <div class="col-sm-4">
+            <h3>Vets</h3>
+            <p>Coming soon...</p>
+        </div>
+        <div class="col-sm-4">
+            <h3>Articles</h3>
+            <p>Coming soon...</p>
+        </div>
+    </div>
+</section>
+<section class="jumbotron text-center" style="margin-bottom:0">
+    <p>Footer</p>
+</section>
 </body>
 </html>

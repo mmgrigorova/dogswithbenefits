@@ -10,11 +10,13 @@
         <table class="table" id="dog-list">
             <tr>
                 <th></th>
+                <th></th>
                 <th>Name</th>
                 <th>Breed</th>
                 <th>Age</th>
             </tr>
             <tr th:each="dog : ${dogs}">
+                <td th:if="${!dog.photos.isEmpty()}"><img th:src="${dog.photos[0].path}"></td>
                 <td><a th:href="@{/dogs/dog_profile(dogId=${dog.id})}" th:text="Profile">Profile</a></td>
                 <td th:text="${dog.name}"></td>
                 <td th:text="${dog.breed.name}"></td>
@@ -22,15 +24,25 @@
             </tr>
         </table>
 
-        <div th:each="data, row: ${dogs}" th:with="numList=${ {3,2,1,0} }" th:if="${row.count % 4 == 0 or row.last}"
+        <div th:each="dog, row: ${dogs}" th:with="numList=${ {3,2,1,0} }" th:if="${row.count % 4 == 0 or row.last}"
              class="row">
             <!-- Show all rows except the leftovers -->
-            <span th:each="num : ${numList}" th:with="dataIndex=(${row.index} - ${num})" th:if="${row.count % 4 == 0}"
-                  th:text="${dogs[dataIndex].name}">data</span>
+            <span th:each="num : ${numList}" th:with="dataIndex=(${row.index} - ${num})" th:if="${row.count % 4 == 0}">
+            <div>
+                <img th:src="${dogs[dataIndex].photos[0].path}" th:if="${!dogs[dataIndex].photos.isEmpty()}"/>
+                <p th:text="${dogs[dataIndex].name}">Doggy name</p>
+                <p th:text="${dogs[dataIndex].breed.name}"></p>
+            </div>
+            </span>
             <!-- Show the remainders (eg, if there are 9 items, the last row will have one item in it) -->
             <span th:each="num : ${numList}" th:with="dataIndex=(${row.index} - ${num})"
-                  th:if="${row.last} and ${row.count % 4 != 0} and ${num &lt; row.count % 4}"
-                  th:text="${dogs[dataIndex].name}">data</span>
+                  th:if="${row.last} and ${row.count % 4 != 0} and ${num &lt; row.count % 4}">
+            <div>
+                <img th:src="${dogs[dataIndex].photos[0].path}" th:if="${!dogs[dataIndex].photos.isEmpty()}"/>
+                <p th:text="${dogs[dataIndex].name}">Doggy name</p>
+                <p th:text="${dogs[dataIndex].breed.name}"></p>
+            </div>
+            </span>
         </div>
     </article>
     <article class="col-lg-6">

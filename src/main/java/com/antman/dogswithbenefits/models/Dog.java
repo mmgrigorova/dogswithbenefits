@@ -134,4 +134,11 @@ public class Dog {
     public void setPhotos(List<Photo> photos) {
         this.photos = photos;
     }
+
+    public Photo getPhoto() {
+        if (photos == null || photos.isEmpty()){
+            return null;
+        }
+        return photos.get(0);
+    }
 }

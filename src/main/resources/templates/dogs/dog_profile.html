@@ -5,53 +5,60 @@
 <nav th:replace="fragments :: navigation"></nav>
 <h1 th:text="${title}" class="header">Dog Profile</h1>
 
-<section class="clarfix-after clearfix">
+<section class="clarfix-after clearfix row">
     <h2 th:text="${dog.name}"></h2>
-    <!--private User owner;-->
 
-    <!--@Column(name = "name")-->
-    <!--private String name;-->
-
-    <!--@Column(name = "gender")-->
-    <!--private char gender;-->
-
-    <!--@ManyToOne(fetch = FetchType.EAGER)-->
-    <!--@JoinColumn(name = "breedid")-->
-    <!--private Breed breed;-->
-
-    <!--@ManyToOne-->
-    <!--@JoinColumn(name = "secBreedid")-->
-    <!--private Breed secondaryBreed;-->
-
-    <!--@Column(name = "age")-->
-    <!--private int age;-->
-
-    <!--@Column(name = "weight")-->
-    <!--private int weight;-->
-
-    <!--@Column(name = "description")-->
-    <!--private String description;-->
     <section class="display-block">
         <div th:if="${!dog.photos.isEmpty()}" th:each="photo : ${dog.photos}"
              class="profile-image-container inline-block">
             <img th:src="${photo.path}"/>
         </div>
     </section>
-    <section class="col-lg-6">
-        <p th:text="${dog.name}"></p>
-        <p th:text="${dog.breed.name}"></p>
-        <p th:text="${dog.age}"></p>
+    <section class="col-lg-6 inline-block">
+        <div>
+            <h5>Name</h5>
+            <span th:text="${dog.name}"></span>
+        </div>
+        <div>
+            <h5>Age</h5>
+            <span th:text="${dog.age}"></span>
+        </div>
+        <div>
+            <h5>Weight</h5>
+            <span th:text="${dog.weight}"></span>
+        </div>
+        <div>
+            <h5>Breed</h5>
+            <span th:text="${dog.breed.name}"></span>
+        </div>
+        <div th:if="${dog.secondaryBreed != null}">
+            <h5>Secondary Breed</h5>
+            <span th:text="${dog.secondaryBreed.name}"></span>
+        </div>
+        <div>
+            <h5>Description</h5>
+            <span th:text="${dog.description}"></span>
+        </div>
+
     </section>
-    <section class="col-lg-6">
+    <section class="col-lg-6 inline-block">
         <p th:if="${dog.owner != null}"><h4>Owner Information: </h4>
-        <h5>Owner</h5>
-        <span th:text="${dog.owner.firstName} + ' ' + ${dog.owner.lastName}"></span>
-        <h5>Email</h5>
-        <span th:text="${dog.owner.email}"></span>
-        <h5>Phone</h5>
-        <span th:text="${dog.owner.phoneNumber}"></span>
-        <h5>City</h5>
-        <span th:text="${dog.owner.address.city.name}"></span>
+        <div>
+            <h5>Owner</h5>
+            <span th:text="${dog.owner.firstName} + ' ' + ${dog.owner.lastName}"></span>
+        </div>
+        <div>
+            <h5>Email</h5>
+            <span th:text="${dog.owner.email}"></span>
+        </div>
+        <div>
+            <h5>Phone</h5>
+            <span th:text="${dog.owner.phoneNumber}"></span>
+        </div>
+        <div>
+            <h5>City</h5>
+            <span th:text="${dog.owner.address.city.name}"></span>
+        </div>
         </p>
     </section>
     <div>
@@ -71,6 +78,7 @@
     <div th:if="${errormessage}">
         <small th:text="${errormessage}" class="error"></small>
     </div>
-    <th:block th:include="fragments :: assets"></th:block>
+</section>
+<th:block th:include="fragments :: assets"></th:block>
 </body>
 </html>

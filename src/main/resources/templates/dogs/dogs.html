@@ -3,52 +3,63 @@
 <head th:replace="fragments::head"></head>
 <body>
 <nav th:replace="fragments :: navigation"></nav>
-<main class="container-fluid">
+<main class="container">
     <h1 th:text="${title}" class="header">List of dogs</h1>
-    <article class="col-lg-8 dog-grid">
+    <article class="dog-grid">
         <div th:each="dog, row: ${dogs}" th:with="numList=${ {3,2,1,0} }" th:if="${row.count % 4 == 0 or row.last}"
-             class="row">
+             class="row" th:onclick="dogInfo">
             <!-- Show all rows except the leftovers -->
             <span th:each="num : ${numList}"
                   th:with="dataIndex=(${row.index} - ${num})"
                   th:if="${row.count % 4 == 0}"
                   class="col-sm-3 border-bottom">
-                <a th:href="@{/dogs/dog_profile(dogId=${dogs[dataIndex].id})}">
+
                     <div class="doggy-thumbnail">
-                        <img th:src="${dogs[dataIndex].photos[0].path}" th:if="${!dogs[dataIndex].photos.isEmpty()}" class="rounded-circle"/>
+                        <div class="circular" th:if="${!dogs[dataIndex].photos.isEmpty()}">
+                            <img th:src="${dogs[dataIndex].photos[0].path}"/>
+                        </div>
+                          <div class="circular" th:if="${dogs[dataIndex].photos.isEmpty()}">
+                            <img th:if="${dogs[dataIndex].gender} == 'm'"
+                                 th:src="@{/images/defaultdoggy.jpg}"/>
+                            <img th:if="${dogs[dataIndex].gender} == 'f'"
+                                 th:src="@{/images/defaultdoggyfem.jpg}"/>
+                        </div>
                         <p th:text="${dogs[dataIndex].name}">Doggy name</p>
                         <p th:text="${dogs[dataIndex].breed.name}"></p>
-                        <p th:text="${dog.age}"></p>
+                        <p th:text="${dogs[dataIndex].gender}"></p>
+                        <p th:text="${dogs[dataIndex].age}"></p>
+                        <a th:href="@{/dogs/dog_profile(dogId=${dogs[dataIndex].id})}">
+                            Go to full profile
+                        </a>
                     </div>
-                </a>
+
             </span>
             <!-- Show the remainders (eg, if there are 9 items, the last row will have one item in it) -->
             <span th:each="num : ${numList}" th:with="dataIndex=(${row.index} - ${num})"
                   th:if="${row.last} and ${row.count % 4 != 0} and ${num &lt; row.count % 4}"
                   class="col-sm-3 border-bottom">
-                  <a th:href="@{/dogs/dog_profile(dogId=${dogs[dataIndex].id})}">
-                    <div class="doggy-thumbnail">
-                        <img th:src="${dogs[dataIndex].photos[0].path}" th:if="${!dogs[dataIndex].photos.isEmpty()}" class="rounded-circle"/>
+                           <div class="doggy-thumbnail">
+                        <div class="circular" th:if="${!dogs[dataIndex].photos.isEmpty()}">
+                            <img th:src="${dogs[dataIndex].photos[0].path}"/>
+                        </div>
+                          <div class="circular" th:if="${dogs[dataIndex].photos.isEmpty()}">
+                            <img th:if="${dogs[dataIndex].gender} == 'm'"
+                                 th:src="@{/images/defaultdoggy.jpg}"/>
+                            <img th:if="${dogs[dataIndex].gender} == 'f'"
+                                 th:src="@{/images/defaultdoggyfem.jpg}"/>
+                        </div>
                         <p th:text="${dogs[dataIndex].name}">Doggy name</p>
                         <p th:text="${dogs[dataIndex].breed.name}"></p>
-                        <p th:text="${dog.age}"></p>
+                        <p th:text="${dogs[dataIndex].gender}"></p>
+                        <p th:text="${dogs[dataIndex].age}"></p>
+                        <a th:href="@{/dogs/dog_profile(dogId=${dogs[dataIndex].id})}">
+                            Go to full profile
+                        </a>
                     </div>
-                </a>
             </span>
         </div>
     </article>
-    <article class="col-lg-3">
-        <div>
-            Dog info
-            <tr th:each="dog : ${dogs}">
-                <td th:if="${!dog.photos.isEmpty()}"><img th:src="${dog.photos[0].path}"></td>
-                <td><a th:href="@{/dogs/dog_profile(dogId=${dog.id})}" th:text="Profile">Profile</a></td>
-                <td th:text="${dog.name}"></td>
-                <td th:text="${dog.breed.name}"></td>
-                <td th:text="${dog.age}"></td>
-            </tr>
-        </div>
-    </article>
+
 </main>
 <th:block th:include="fragments :: assets"></th:block>
 </body>

@@ -30,17 +30,54 @@ a:hover {
     width: 100%;
 }
 
-.dog-grid, .dog-grid a{
+.dog-grid{
     color: #243B55;
 }
 
-.dog-grid a:hover{
-    color: #141E30;
+.doggy-thumbnail{
+  margin: 10px;
 }
 
+
+
+.circular {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+.circular img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    width: auto;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
 .doggy-thumbnail img{
     width: 100%;
 }
+
+.doggy-thumbnail a{
+    width: 100%;
+    display: inline-block;
+    padding: 5px;
+    background-color: #243B55;
+    color: ghostwhite;
+}
+
+
+.doggy-thumbnail a:hover{
+    background-color: #FF5733;
+}
+
 article {
     display: inline-block;
 }

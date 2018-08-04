@@ -3,12 +3,11 @@
 <head th:replace="fragments::head"></head>
 <body class="container">
 <nav th:replace="fragments :: navigation"></nav>
-<h1 th:text="${title}" class="header">Dog Profile</h1>
+<h1 th:text="|${dog.name}&#39;s Profile|" class="header">Dog Profile</h1>
+<section class="clarfix-after clearfix">
 
-<section class="clarfix-after clearfix row">
-    <h2 th:text="${dog.name}"></h2>
 
-    <section class="display-block">
+    <section class="display-block ">
         <div th:if="${!dog.photos.isEmpty()}" th:each="photo : ${dog.photos}"
              class="profile-image-container inline-block">
             <img th:src="${photo.path}"/>

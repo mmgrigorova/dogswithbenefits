@@ -5,15 +5,15 @@
 <nav th:replace="fragments :: navigation"></nav>
 <h1 th:text="|${dog.name}&#39;s Profile|" class="header">Dog Profile</h1>
 <section class="clarfix-after clearfix">
-
-
-    <section class="display-block ">
+    <section class="row dog-profile-info">
+    <div class="col-lg-3 inline-block">
         <div th:if="${!dog.photos.isEmpty()}" th:each="photo : ${dog.photos}"
              class="profile-image-container inline-block">
             <img th:src="${photo.path}"/>
         </div>
-    </section>
-    <section class="col-lg-6 inline-block">
+    </div>
+    <div class="col-lg-4 inline-block">
+        <h4 th:text="|${dog.name}&#39;s Information|">Dog Information: </h4>
         <div>
             <h5>Name</h5>
             <span th:text="${dog.name}"></span>
@@ -39,9 +39,10 @@
             <span th:text="${dog.description}"></span>
         </div>
 
-    </section>
-    <section class="col-lg-6 inline-block">
-        <p th:if="${dog.owner != null}"><h4>Owner Information: </h4>
+    </div>
+    <div class="col-lg-4 inline-block">
+        <div th:if="${dog.owner != null}">
+            <h4>Owner Information: </h4>
         <div>
             <h5>Owner</h5>
             <span th:text="${dog.owner.firstName} + ' ' + ${dog.owner.lastName}"></span>
@@ -58,9 +59,10 @@
             <h5>City</h5>
             <span th:text="${dog.owner.address.city.name}"></span>
         </div>
-        </p>
+        </div>
+    </div>
     </section>
-    <div>
+    <div class="row">
         <form method="POST" th:action="@{/attach/(dogId=${dog.id})}" th:object="${newPhoto}"
               enctype="multipart/form-data">
             <label th:for="image-upload">Attach Dog Images</label><br/>

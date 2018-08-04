@@ -23,11 +23,16 @@ a:hover {
     max-width: 200px;
     max-height: 250px;
     margin: 20px 0px;
+    overflow: hidden;
 }
 
 .profile-image-container img {
     height: 100%;
     width: 100%;
+}
+
+.dog-profile-info{
+    vertical-align: top;
 }
 
 .dog-grid{
@@ -79,8 +84,9 @@ a:hover {
 }
 
 h5{
-    display: inline-block;
-    font-size: 1em;
+    font-size: 0.8em;
+    color: #7CB342;
+    margin: 10px 0 0 0;
 }
 
 article {

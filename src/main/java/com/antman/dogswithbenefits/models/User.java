@@ -1,7 +1,5 @@
 package com.antman.dogswithbenefits.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -33,7 +31,6 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "owner")
-    @JsonIgnore
     private List<Dog> dogs;
 
     public User(){

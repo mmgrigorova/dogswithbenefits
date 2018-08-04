@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.5-10.3.8-MariaDB)
 # Database: dogswithbenefits
-# Generation Time: 2018-07-25 09:00:57 +0000
+# Generation Time: 2018-08-04 18:47:21 +0000
 # ************************************************************
 
 
@@ -22,8 +22,6 @@
 
 # Dump of table addresses
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `addresses`;
 
 CREATE TABLE `addresses` (
   `addressid` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -41,7 +39,8 @@ LOCK TABLES `addresses` WRITE;
 INSERT INTO `addresses` (`addressid`, `streetaddress`, `postalcode`, `cityid`)
 VALUES
 	(1,'Mladost 1, bl. 40',1784,1),
-	(8,'5 Tepe str',1000,4);
+	(8,'5 Tepe str',1000,4),
+	(9,'123',12,5);
 
 /*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -49,8 +48,6 @@ UNLOCK TABLES;
 
 # Dump of table breeds
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `breeds`;
 
 CREATE TABLE `breeds` (
   `breedid` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -287,8 +284,6 @@ UNLOCK TABLES;
 # Dump of table cities
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `cities`;
-
 CREATE TABLE `cities` (
   `cityid` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `cityname` varchar(50) NOT NULL DEFAULT '',
@@ -305,7 +300,8 @@ LOCK TABLES `cities` WRITE;
 INSERT INTO `cities` (`cityid`, `cityname`, `countryid`)
 VALUES
 	(1,'Sofia',1),
-	(4,'Plovdiv',1);
+	(4,'Plovdiv',1),
+	(5,'1',2);
 
 /*!40000 ALTER TABLE `cities` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -313,8 +309,6 @@ UNLOCK TABLES;
 
 # Dump of table countries
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `countries`;
 
 CREATE TABLE `countries` (
   `countryid` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -327,7 +321,8 @@ LOCK TABLES `countries` WRITE;
 
 INSERT INTO `countries` (`countryid`, `countryname`)
 VALUES
-	(1,'Bulgaria');
+	(1,'Bulgaria'),
+	(2,'1');
 
 /*!40000 ALTER TABLE `countries` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -335,8 +330,6 @@ UNLOCK TABLES;
 
 # Dump of table dogs
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `dogs`;
 
 CREATE TABLE `dogs` (
   `dogId` int(6) unsigned NOT NULL AUTO_INCREMENT,
@@ -363,8 +356,21 @@ LOCK TABLES `dogs` WRITE;
 INSERT INTO `dogs` (`dogId`, `ownerId`, `name`, `gender`, `breedid`, `secBreedid`, `age`, `weight`, `description`)
 VALUES
 	(8,3,'Charlie','m',338,NULL,3,15,'Very cool doggy'),
-	(9,4,'Lonnie','f',130,NULL,3,30,'Crazy!'),
-	(10,4,'Rex','m',96,82,2,28,'');
+	(9,4,'Cony','f',130,NULL,4,30,'Crazy!'),
+	(10,4,'Rex','m',96,82,2,28,''),
+	(23,3,'Roxy','f',56,NULL,6,23,'New doggy in the house!'),
+	(24,3,'Arny','f',4,NULL,6,23,'Third Update for description through Postman'),
+	(25,3,'Rosy','f',123,NULL,6,23,'doggy in the house!'),
+	(28,3,'Archie','m',12,NULL,4,23,'123'),
+	(29,3,'Lany','m',354,6,4,8,''),
+	(30,3,'Angela','f',123,NULL,6,23,'From Postman doggy in the house!'),
+	(32,3,'Cassandra','f',15,3,4,5,'Added through UI'),
+	(33,3,'Catty','f',6,NULL,5,12,'Added through UI'),
+	(34,3,'Applebee','f',33,NULL,4,10,'Added through UI'),
+	(36,3,'Many','f',123,NULL,6,23,'From Postman doggy in the house!'),
+	(37,3,'Bobby','m',149,363,7,10,''),
+	(38,3,'Ringo','m',131,1,5,12,'Added with generalized entity'),
+	(39,3,'Gary','m',362,NULL,5,14,'');
 
 /*!40000 ALTER TABLE `dogs` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -373,12 +379,10 @@ UNLOCK TABLES;
 # Dump of table photos
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `photos`;
-
 CREATE TABLE `photos` (
   `photoId` int(6) unsigned NOT NULL AUTO_INCREMENT,
   `dogId` int(6) unsigned NOT NULL,
-  `photo` varchar(100) NOT NULL,
+  `photo` varchar(3000) NOT NULL DEFAULT '',
   PRIMARY KEY (`photoId`),
   KEY `dogId` (`dogId`),
   CONSTRAINT `photos_ibfk_1` FOREIGN KEY (`dogId`) REFERENCES `dogs` (`dogId`)
@@ -389,7 +393,10 @@ LOCK TABLES `photos` WRITE;
 
 INSERT INTO `photos` (`photoId`, `dogId`, `photo`)
 VALUES
-	(1,8,'https://dogzone-tcwebsites.netdna-ssl.com/wp-content/uploads/2017/11/shiba-inu-names-1.jpg');
+	(65,8,'https://images.dog.ceo/breeds/shiba/shiba-13.jpg'),
+	(66,28,'https://images.dog.ceo/breeds/terrier-american/n02093428_3329.jpg'),
+	(73,39,'https://images.dog.ceo/breeds/whippet/n02091134_19124.jpg'),
+	(74,9,'https://images.pexels.com/photos/5549/yellow-dog-pet-labrador-5549.jpg');
 
 /*!40000 ALTER TABLE `photos` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -397,8 +404,6 @@ UNLOCK TABLES;
 
 # Dump of table users
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `userid` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -420,7 +425,8 @@ LOCK TABLES `users` WRITE;
 INSERT INTO `users` (`userid`, `firstname`, `lastname`, `phonenumber`, `email`, `addressid`, `password`)
 VALUES
 	(3,'Maria','Grigorova','++359899000111','maria@dogs.com',1,'admin'),
-	(4,'Georgi','Georgiev','++359877999000','georgi@dogs.com',8,'admin');
+	(4,'Georgi','Georgiev','++359877999000','georgi@dogs.com',8,'admin'),
+	(5,'Anita','Mario',NULL,'example@test.com',9,'anita');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;

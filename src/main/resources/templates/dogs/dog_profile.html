@@ -7,36 +7,70 @@
 
 <section class="clarfix-after clearfix">
     <h2 th:text="${dog.name}"></h2>
+    <!--private User owner;-->
 
+    <!--@Column(name = "name")-->
+    <!--private String name;-->
+
+    <!--@Column(name = "gender")-->
+    <!--private char gender;-->
+
+    <!--@ManyToOne(fetch = FetchType.EAGER)-->
+    <!--@JoinColumn(name = "breedid")-->
+    <!--private Breed breed;-->
+
+    <!--@ManyToOne-->
+    <!--@JoinColumn(name = "secBreedid")-->
+    <!--private Breed secondaryBreed;-->
+
+    <!--@Column(name = "age")-->
+    <!--private int age;-->
+
+    <!--@Column(name = "weight")-->
+    <!--private int weight;-->
+
+    <!--@Column(name = "description")-->
+    <!--private String description;-->
     <section class="display-block">
         <div th:if="${!dog.photos.isEmpty()}" th:each="photo : ${dog.photos}"
              class="profile-image-container inline-block">
             <img th:src="${photo.path}"/>
         </div>
     </section>
-    <section>
+    <section class="col-lg-6">
         <p th:text="${dog.name}"></p>
         <p th:text="${dog.breed.name}"></p>
         <p th:text="${dog.age}"></p>
-        <p th:text="${dog.owner.firstName}"></p>
     </section>
-</section>
-<div>
-<form method="POST" th:action="@{/attach/(dogId=${dog.id})}" th:object="${newPhoto}" enctype="multipart/form-data">
-    <label th:for="image-upload">Attach Dog Images</label><br/>
-    <input type="text" th:name="*{path}" th:field="*{path}" name="path" class="form-control-md" size="50"/>
-    <small id="fileHelp" class="form-text text-muted">Please insert the URL of your doggy's image</small>
-    <br/>
-    <input th:type="hidden" th:name ="${dog.id}" th:value="${dog.id}">
-    <input type="submit" value="Attach"  class="btn btn-primary" id="image-upload"/>
-</form>
-</div>
-<div th:if="${message}">
-    <small th:text="${message}" class="success"></small>
-</div>
-<div th:if="${errormessage}">
-    <small th:text="${errormessage}" class="error"></small>
-</div>
-<th:block th:include="fragments :: assets"></th:block>
+    <section class="col-lg-6">
+        <p th:if="${dog.owner != null}"><h4>Owner Information: </h4>
+        <h5>Owner</h5>
+        <span th:text="${dog.owner.firstName} + ' ' + ${dog.owner.lastName}"></span>
+        <h5>Email</h5>
+        <span th:text="${dog.owner.email}"></span>
+        <h5>Phone</h5>
+        <span th:text="${dog.owner.phoneNumber}"></span>
+        <h5>City</h5>
+        <!--<span th:text="${dog.owner.address.city}"></span>-->
+        </p>
+    </section>
+    <div>
+        <form method="POST" th:action="@{/attach/(dogId=${dog.id})}" th:object="${newPhoto}"
+              enctype="multipart/form-data">
+            <label th:for="image-upload">Attach Dog Images</label><br/>
+            <input type="text" th:name="*{path}" th:field="*{path}" name="path" class="form-control-md" size="50"/>
+            <small id="fileHelp" class="form-text text-muted">Please insert the URL of your doggy's image</small>
+            <br/>
+            <input th:type="hidden" th:name="${dog.id}" th:value="${dog.id}">
+            <input type="submit" value="Attach" class="btn btn-primary" id="image-upload"/>
+        </form>
+    </div>
+    <div th:if="${message}">
+        <small th:text="${message}" class="success"></small>
+    </div>
+    <div th:if="${errormessage}">
+        <small th:text="${errormessage}" class="error"></small>
+    </div>
+    <th:block th:include="fragments :: assets"></th:block>
 </body>
 </html>

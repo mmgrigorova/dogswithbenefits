@@ -67,6 +67,8 @@ public class DogRepositorySQLImpl<T> implements DogRepository {
             session.beginTransaction();
             dog = (Dog) session.get(Dog.class, id);
             dog.getOwner().getFirstName();
+            dog.getOwner().getPhoneNumber();
+            dog.getOwner().getAddress().getCity();
             dog.getPhotos().forEach(photo -> photo.getPath());
             session.getTransaction().commit();
             session.close();

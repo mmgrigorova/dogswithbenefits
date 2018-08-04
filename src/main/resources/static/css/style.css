@@ -78,6 +78,10 @@ a:hover {
     background-color: #FF5733;
 }
 
+h5{
+    display: inline-block;
+}
+
 article {
     display: inline-block;
 }

@@ -1,5 +1,7 @@
 package com.antman.dogswithbenefits.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +14,7 @@ public class Photo {
 
     @ManyToOne
     @JoinColumn(name = "dogid")
+    @JsonIgnore
     private Dog dog;
 
     @Column(name = "photo")

@@ -32,4 +32,9 @@ public class DogRestController {
         return service.update(dog);
     }
 
+    @GetMapping("/{id}")
+    public Dog fingById(@PathVariable("id") int id){
+        return service.fingById(id);
+    }
+
 }

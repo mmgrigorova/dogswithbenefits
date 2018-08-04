@@ -14,21 +14,21 @@
                   th:if="${row.count % 4 == 0}"
                   class="col-sm-3 border-bottom">
 
-                    <div class="doggy-thumbnail">
-                        <div class="circular" th:if="${!dogs[dataIndex].photos.isEmpty()}">
+                    <div class="doggy-thumbnail" th:with="dog=${dogs[dataIndex]}">
+                        <div class="circular" th:if="${!dog.photos.isEmpty()}">
                             <img th:src="${dogs[dataIndex].photos[0].path}"/>
                         </div>
-                          <div class="circular" th:if="${dogs[dataIndex].photos.isEmpty()}">
-                            <img th:if="${dogs[dataIndex].gender} == 'm'"
+                          <div class="circular" th:if="${dog.photos.isEmpty()}">
+                            <img th:if="${dog.gender} == 'm'"
                                  th:src="@{/images/defaultdoggy.jpg}"/>
-                            <img th:if="${dogs[dataIndex].gender} == 'f'"
+                            <img th:if="${dog.gender} == 'f'"
                                  th:src="@{/images/defaultdoggyfem.jpg}"/>
                         </div>
-                        <p th:text="${dogs[dataIndex].name}">Doggy name</p>
-                        <p th:text="${dogs[dataIndex].breed.name}"></p>
-                        <p th:text="${dogs[dataIndex].gender}"></p>
-                        <p th:text="${dogs[dataIndex].age}"></p>
-                        <a th:href="@{/dogs/dog_profile(dogId=${dogs[dataIndex].id})}">
+                        <p th:text="${dog.name}">Doggy name</p>
+                        <p th:text="${dog.breed.name}"></p>
+                        <p th:text="${dog.gender}"></p>
+                        <p th:text="${dog.age}"></p>
+                        <a th:href="@{/dogs/dog_profile(dogId=${dog.id})}">
                             Go to full profile
                         </a>
                     </div>
@@ -38,21 +38,21 @@
             <span th:each="num : ${numList}" th:with="dataIndex=(${row.index} - ${num})"
                   th:if="${row.last} and ${row.count % 4 != 0} and ${num &lt; row.count % 4}"
                   class="col-sm-3 border-bottom">
-                           <div class="doggy-thumbnail">
-                        <div class="circular" th:if="${!dogs[dataIndex].photos.isEmpty()}">
+                <div class="doggy-thumbnail" th:with="dog=${dogs[dataIndex]}">
+                        <div class="circular" th:if="${!dog.photos.isEmpty()}">
                             <img th:src="${dogs[dataIndex].photos[0].path}"/>
                         </div>
-                          <div class="circular" th:if="${dogs[dataIndex].photos.isEmpty()}">
-                            <img th:if="${dogs[dataIndex].gender} == 'm'"
+                          <div class="circular" th:if="${dog.photos.isEmpty()}">
+                            <img th:if="${dog.gender} == 'm'"
                                  th:src="@{/images/defaultdoggy.jpg}"/>
-                            <img th:if="${dogs[dataIndex].gender} == 'f'"
+                            <img th:if="${dog.gender} == 'f'"
                                  th:src="@{/images/defaultdoggyfem.jpg}"/>
                         </div>
-                        <p th:text="${dogs[dataIndex].name}">Doggy name</p>
-                        <p th:text="${dogs[dataIndex].breed.name}"></p>
-                        <p th:text="${dogs[dataIndex].gender}"></p>
-                        <p th:text="${dogs[dataIndex].age}"></p>
-                        <a th:href="@{/dogs/dog_profile(dogId=${dogs[dataIndex].id})}">
+                        <p th:text="${dog.name}">Doggy name</p>
+                        <p th:text="${dog.breed.name}"></p>
+                        <p th:text="${dog.gender}"></p>
+                        <p th:text="${dog.age}"></p>
+                        <a th:href="@{/dogs/dog_profile(dogId=${dog.id})}">
                             Go to full profile
                         </a>
                     </div>

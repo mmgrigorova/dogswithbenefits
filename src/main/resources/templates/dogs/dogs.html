@@ -18,7 +18,7 @@
                         <div class="circular" th:if="${!dog.photos.isEmpty()}">
                             <img th:src="${dogs[dataIndex].photos[0].path}"/>
                         </div>
-                          <div class="circular" th:if="${dog.photos.isEmpty()}">
+                          <div class="circular mid-opacity" th:if="${dog.photos.isEmpty()}">
                             <img th:if="${dog.gender} == 'm'"
                                  th:src="@{/images/defaultdoggy.jpg}"/>
                             <img th:if="${dog.gender} == 'f'"
@@ -42,7 +42,7 @@
                         <div class="circular" th:if="${!dog.photos.isEmpty()}">
                             <img th:src="${dogs[dataIndex].photos[0].path}"/>
                         </div>
-                          <div class="circular" th:if="${dog.photos.isEmpty()}">
+                          <div class="circular mid-opacity" th:if="${dog.photos.isEmpty()}">
                             <img th:if="${dog.gender} == 'm'"
                                  th:src="@{/images/defaultdoggy.jpg}"/>
                             <img th:if="${dog.gender} == 'f'"

@@ -11,6 +11,10 @@ a:hover {
     text-decoration: none;
 }
 
+.text-center{
+    text-align: center;
+}
+
 .main-image {
     height: 70vh;
     background: url(../images/back.jpg) no-repeat;
@@ -124,4 +128,13 @@ article {
     content: "";
     clear: both;
     display: table;
+}
+
+.mid-opacity{
+    opacity: 0.5;
+}
+
+.lobster{
+    font-family: 'Lobster', cursive;
+    font-size: 2em;
 }

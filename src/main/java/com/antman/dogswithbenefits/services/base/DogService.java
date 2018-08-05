@@ -11,6 +11,7 @@ public interface DogService {
     List<Dog> getAllDogs();
     Dog fingById(int id);
     Dog update(Dog dog);
+    boolean delete(int dogId);
     void addPhoto(Photo photo);
     List<Breed> getBreeds();
 

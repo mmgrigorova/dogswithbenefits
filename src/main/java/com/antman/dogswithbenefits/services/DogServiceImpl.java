@@ -45,6 +45,12 @@ public class DogServiceImpl implements DogService {
     }
 
     @Override
+    public boolean delete(int dogId) {
+        Dog dog = repository.findById(dogId);
+        return repository.delete(dog);
+    }
+
+    @Override
     public void addPhoto(Photo photo) {
         repository.addPhoto(photo);
     }

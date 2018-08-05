@@ -86,15 +86,34 @@ public class DogRepositorySQLImpl<T> implements DogRepository {
     }
 
     @Override
-    public void update(Dog updateDog) {
+    public boolean update(Dog updateDog) {
         Session session = null;
         try {
             session = factory.openSession();
             session.beginTransaction();
             session.saveOrUpdate(updateDog);
             session.getTransaction().commit();
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean delete(Dog deleteDog) {
+        Session session = null;
+        try {
+            session = factory.openSession();
+            session.beginTransaction();
+            session.delete(deleteDog);
+            session.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         } finally {
             session.close();
         }

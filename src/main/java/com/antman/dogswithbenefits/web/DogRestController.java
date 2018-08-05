@@ -32,6 +32,11 @@ public class DogRestController {
         return service.update(dog);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public void deleteDog(@PathVariable("id") int dogId){
+        service.delete(dogId);
+    }
+
     @GetMapping("/{id}")
     public Dog fingById(@PathVariable("id") int id){
         return service.fingById(id);

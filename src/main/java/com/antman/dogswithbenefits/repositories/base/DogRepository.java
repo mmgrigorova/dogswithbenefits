@@ -10,7 +10,8 @@ public interface DogRepository {
     List<Dog> getAllDogs();
     void addDog(Dog dog);
     Dog findById(int id);
-    void update(Dog updateDog);
+    boolean update(Dog updateDog);
+    boolean delete(Dog deleteDog);
     void addPhoto(Photo photo);
     List<Breed> getBreeds();
 }

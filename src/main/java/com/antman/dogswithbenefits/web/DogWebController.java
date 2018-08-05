@@ -50,6 +50,14 @@ public class DogWebController {
         return "redirect:list";
     }
 
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public String deleteDog(@PathVariable("id") int dogId, Model model) {
+        String deleteMessage = "Dog has been successfully deleted";
+        service.delete(dogId);
+        model.addAttribute("deleteMessage", deleteMessage);
+        return "redirect:/dogs/list";
+    }
+
     @GetMapping("/dog_profile")
     public ModelAndView dogProfileIndex(@RequestParam("dogId") int dogId){
         Dog dog = service.fingById(dogId);

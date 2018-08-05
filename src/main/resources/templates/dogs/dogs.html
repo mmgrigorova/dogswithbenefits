@@ -5,6 +5,7 @@
 <nav th:replace="fragments :: navigation"></nav>
 <main class="container">
     <h1 th:text="${title}" class="header">List of dogs</h1>
+    <small th:if="deleteMessage" th:text="${deleteMessage}"></small>
     <article class="dog-grid">
         <div th:each="dog, row: ${dogs}" th:with="numList=${ {3,2,1,0} }" th:if="${row.count % 4 == 0 or row.last}"
              class="row" th:onclick="dogInfo">
@@ -31,6 +32,9 @@
                         <a th:href="@{/dogs/dog_profile(dogId=${dog.id})}">
                             Go to full profile
                         </a>
+                        <form th:action="@{'delete/{id}'(id=${dog.id})}" th:method="delete" method="delete">
+                            <button type="submit" id="deleteButton">Delete</button>
+                        </form>
                     </div>
 
             </span>

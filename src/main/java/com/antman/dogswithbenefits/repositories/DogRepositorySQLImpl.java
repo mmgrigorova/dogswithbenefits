@@ -25,8 +25,9 @@ public class DogRepositorySQLImpl<T> implements DogRepository {
     @Override
     public List<Dog> getAllDogs() {
         List<Dog> dogs = new ArrayList<>();
+        Session session = null;
         try {
-            Session session = factory.openSession();
+            session = factory.openSession();
             session.beginTransaction();
             Query query = session.createQuery("FROM Dog");
             dogs = query.list();
@@ -34,23 +35,26 @@ public class DogRepositorySQLImpl<T> implements DogRepository {
                 dog.getPhoto();
             }
             session.getTransaction().commit();
-            session.close();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            session.close();
         }
 
         return dogs;
     }
 
     private void addEntity(T t) {
+        Session session = null;
         try {
-            Session session = factory.openSession();
+            session = factory.openSession();
             session.beginTransaction();
             session.save(t);
             session.getTransaction().commit();
-            session.close();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 
@@ -62,8 +66,9 @@ public class DogRepositorySQLImpl<T> implements DogRepository {
     @Override
     public Dog findById(int id) {
         Dog dog = null;
+        Session session = null;
         try {
-            Session session = factory.openSession();
+            session = factory.openSession();
             session.beginTransaction();
             dog = (Dog) session.get(Dog.class, id);
             dog.getOwner().getFirstName();
@@ -71,9 +76,10 @@ public class DogRepositorySQLImpl<T> implements DogRepository {
             dog.getOwner().getAddress().getCity().getName();
             dog.getPhotos().forEach(photo -> photo.getPath());
             session.getTransaction().commit();
-            session.close();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            session.close();
         }
 
         return dog;
@@ -81,14 +87,16 @@ public class DogRepositorySQLImpl<T> implements DogRepository {
 
     @Override
     public void update(Dog updateDog) {
+        Session session = null;
         try {
-            Session session = factory.openSession();
+            session = factory.openSession();
             session.beginTransaction();
             session.saveOrUpdate(updateDog);
             session.getTransaction().commit();
-            session.close();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 
@@ -100,14 +108,16 @@ public class DogRepositorySQLImpl<T> implements DogRepository {
     @Override
     public List<Breed> getBreeds() {
         List<Breed> breeds = new ArrayList<>();
+        Session session = null;
         try {
-            Session session = factory.openSession();
+            session = factory.openSession();
             session.beginTransaction();
             breeds = session.createQuery("FROM Breed").list();
             session.getTransaction().commit();
-            session.close();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            session.close();
         }
 
         return breeds;

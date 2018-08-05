@@ -29,11 +29,11 @@
                         <p th:text="${dog.breed.name}"></p>
                         <p th:text="${dog.gender}"></p>
                         <p th:text="${dog.age}"></p>
-                        <a th:href="@{/dogs/dog_profile(dogId=${dog.id})}">
+                        <a th:href="@{/dogs/dog_profile(dogId=${dog.id})}" class="a-link">
                             Go to full profile
                         </a>
-                        <form th:action="@{'delete/{id}'(id=${dog.id})}" th:method="delete" method="delete">
-                            <button type="submit" id="deleteButton">Delete</button>
+                     <form th:action="@{'delete/{id}'(id=${dog.id})}" th:method="delete" method="delete">
+                            <button type="submit" id="deleteButton" class="btn btn-outline-danger btn-sm">Delete</button>
                         </form>
                     </div>
 
@@ -56,9 +56,12 @@
                         <p th:text="${dog.breed.name}"></p>
                         <p th:text="${dog.gender}"></p>
                         <p th:text="${dog.age}"></p>
-                        <a th:href="@{/dogs/dog_profile(dogId=${dog.id})}">
+                        <a th:href="@{/dogs/dog_profile(dogId=${dog.id})}" class="a-link">
                             Go to full profile
                         </a>
+                      <form th:action="@{'delete/{id}'(id=${dog.id})}" th:method="delete" method="delete">
+                            <button type="submit" id="deleteButton" class="btn btn-outline-danger btn-sm">Delete</button>
+                        </form>
                     </div>
             </span>
         </div>

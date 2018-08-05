@@ -48,7 +48,6 @@ a:hover {
 }
 
 
-
 .circular {
     width: 200px;
     height: 200px;
@@ -80,6 +79,7 @@ a:hover {
     padding: 5px;
     background-color: #243B55;
     color: ghostwhite;
+    margin: 10px 0px;
 }
 
 

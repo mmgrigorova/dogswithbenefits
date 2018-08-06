@@ -4,22 +4,44 @@ import com.antman.dogswithbenefits.models.Breed;
 import com.antman.dogswithbenefits.models.Dog;
 import com.antman.dogswithbenefits.models.Photo;
 import com.antman.dogswithbenefits.repositories.base.DogRepository;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO - Create separate repository for photos
+
 @Repository
 public class DogRepositorySQLImpl<T> implements DogRepository {
     private static SessionFactory factory;
+    private static int allDogsCount = 0;
 
     @Autowired
     public DogRepositorySQLImpl(SessionFactory factory) {
         this.factory = factory;
+    }
+
+    public int getAllDogsCount() {
+        return allDogsCount;
+    }
+
+    public void setAllDogsCount(int allDogsCount) {
+        DogRepositorySQLImpl.allDogsCount = allDogsCount;
+    }
+
+    private static Criteria getCriteria(final Session session) {
+        Criteria criteria = session.createCriteria(Dog.class);
+        criteria.add(Restrictions.isNotNull("name"));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.property("name")));
+        criteria.addOrder(Order.asc("name"));
+
+        return criteria;
     }
 
     @Override
@@ -48,18 +70,25 @@ public class DogRepositorySQLImpl<T> implements DogRepository {
     public List<Dog> getPageOfDogs(int startPosition, int rowsCount) {
         List<Dog> dogs = new ArrayList<>();
         Session session = null;
-        try{
+        int totalRecords = 0;
+        try {
             session = factory.openSession();
             session.beginTransaction();
-            Query query = session.createQuery("FROM Dog");
-            query.setFirstResult(startPosition);
-            query.setMaxResults(rowsCount);
-            dogs =  (List<Dog>) query.list();
+            ScrollableResults scrollableResults = getCriteria(session).scroll();
+            scrollableResults.last();
+            totalRecords = scrollableResults.getRowNumber()+1;
+            setAllDogsCount(totalRecords);
+            scrollableResults.close();
+
+            Criteria criteria = session.createCriteria(Dog.class);
+            criteria.setFirstResult(startPosition);
+            criteria.setMaxResults(rowsCount);
+            dogs = (List<Dog>) criteria.list();
             for (Dog dog : dogs) {
                 dog.getPhoto();
             }
             session.getTransaction().commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             session.close();

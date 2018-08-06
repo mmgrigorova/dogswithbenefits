@@ -22,17 +22,17 @@ public class DogWebController {
         this.service = service;
     }
 
-    @GetMapping("/list/{page}")
-    public ModelAndView listDogs(@PathVariable(name = "page", required=false) Optional<Integer> pageNumber){
+    @GetMapping(value = {"/list",
+                        "/list/{page}"})
+    public ModelAndView listDogs(@PathVariable(name = "page", required = false) Optional<Integer> pageNumber) {
         ModelAndView mav = new ModelAndView("dogs/dogs");
         mav.addObject("title", "Our Dogs");
-        if(pageNumber.isPresent()){
-            mav.addObject("dogs", service.getPageOfDogs(1));
-        } else {
+        if (pageNumber.isPresent()) {
             int page = pageNumber.get();
             mav.addObject("dogs", service.getPageOfDogs(page));
+        } else {
+            mav.addObject("dogs", service.getPageOfDogs(1));
         }
-//        mav.addObject("dogs", service.getAllDogs());
         return mav;
     }
 
@@ -47,7 +47,7 @@ public class DogWebController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddDogForm(@ModelAttribute Dog newDog,
-                                       Errors errors, Model model) {
+                                    Errors errors, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Dog");
@@ -67,7 +67,7 @@ public class DogWebController {
     }
 
     @GetMapping("/dog_profile")
-    public ModelAndView dogProfileIndex(@RequestParam("dogId") int dogId){
+    public ModelAndView dogProfileIndex(@RequestParam("dogId") int dogId) {
         Dog dog = service.fingById(dogId);
         ModelAndView mav = new ModelAndView("dogs/dog_profile");
 

@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 public class DogServiceImpl implements DogService {
-    private static final int RESULTS_PER_PAGE = 100;
+    private static final int RESULTS_PER_PAGE = 12;
 
     private DogRepository repository;
     private PhotoRepository photoRepository;
@@ -45,8 +45,11 @@ public class DogServiceImpl implements DogService {
         return repository.getPageOfDogs(pageNumber, RESULTS_PER_PAGE);
     }
 
-    public int getPages() {
-        return repository.getAllDogsCount();
+    @Override
+    public int getDogPagesCount() {
+        int isEvenDogCount = repository.getAllDogsCount()%RESULTS_PER_PAGE;
+        int pages = repository.getAllDogsCount()/RESULTS_PER_PAGE;
+        return isEvenDogCount == 0 ? pages : pages+1;
     }
 
     @Override

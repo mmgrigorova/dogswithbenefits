@@ -10,6 +10,7 @@ public interface DogService {
     void addDog(Dog dog);
     List<Dog> getAllDogs();
     List<Dog> getPageOfDogs(int pageNumber);
+    int getDogPagesCount();
     Dog fingById(int id);
     Dog update(Dog dog);
     boolean delete(int dogId);

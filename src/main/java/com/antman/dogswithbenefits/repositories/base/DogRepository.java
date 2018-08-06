@@ -1,8 +1,6 @@
 package com.antman.dogswithbenefits.repositories.base;
 
-import com.antman.dogswithbenefits.models.Breed;
 import com.antman.dogswithbenefits.models.Dog;
-import com.antman.dogswithbenefits.models.Photo;
 
 import java.util.List;
 
@@ -21,7 +19,4 @@ public interface DogRepository {
 
     boolean delete(Dog deleteDog);
 
-    void addPhoto(Photo photo);
-
-    List<Breed> getBreeds();
 }

@@ -3,7 +3,9 @@ package com.antman.dogswithbenefits.services;
 import com.antman.dogswithbenefits.models.Breed;
 import com.antman.dogswithbenefits.models.Dog;
 import com.antman.dogswithbenefits.models.Photo;
+import com.antman.dogswithbenefits.repositories.base.BreedRepository;
 import com.antman.dogswithbenefits.repositories.base.DogRepository;
+import com.antman.dogswithbenefits.repositories.base.PhotoRepository;
 import com.antman.dogswithbenefits.services.base.DogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,11 +15,16 @@ import java.util.List;
 @Service
 public class DogServiceImpl implements DogService {
     private static final int RESULTS_PER_PAGE = 100;
+
     private DogRepository repository;
+    private PhotoRepository photoRepository;
+    private BreedRepository breedRepository;
 
     @Autowired
-    public DogServiceImpl(DogRepository repository) {
+    public DogServiceImpl(DogRepository repository, PhotoRepository photoRepository, BreedRepository breedRepository) {
         this.repository = repository;
+        this.photoRepository = photoRepository;
+        this.breedRepository = breedRepository;
     }
 
     @Override
@@ -38,7 +45,7 @@ public class DogServiceImpl implements DogService {
         return repository.getPageOfDogs(pageNumber, RESULTS_PER_PAGE);
     }
 
-    public int getPages(){
+    public int getPages() {
         return repository.getAllDogsCount();
     }
 
@@ -62,11 +69,11 @@ public class DogServiceImpl implements DogService {
 
     @Override
     public void addPhoto(Photo photo) {
-        repository.addPhoto(photo);
+        photoRepository.addPhoto(photo);
     }
 
     @Override
     public List<Breed> getBreeds() {
-        return repository.getBreeds();
+        return breedRepository.getBreeds();
     }
 }

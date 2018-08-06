@@ -1,8 +1,6 @@
 package com.antman.dogswithbenefits.repositories;
 
-import com.antman.dogswithbenefits.models.Breed;
 import com.antman.dogswithbenefits.models.Dog;
-import com.antman.dogswithbenefits.models.Photo;
 import com.antman.dogswithbenefits.repositories.base.DogRepository;
 import org.hibernate.*;
 import org.hibernate.criterion.Order;
@@ -17,7 +15,7 @@ import java.util.List;
 // TODO - Create separate repository for photos
 
 @Repository
-public class DogRepositorySQLImpl<T> implements DogRepository {
+public class DogRepositorySQLImpl implements DogRepository{
     private static SessionFactory factory;
     private static int allDogsCount = 0;
 
@@ -97,24 +95,19 @@ public class DogRepositorySQLImpl<T> implements DogRepository {
         return dogs;
     }
 
-
-    private void addEntity(T t) {
+    @Override
+    public void addDog(Dog dog) {
         Session session = null;
         try {
             session = factory.openSession();
             session.beginTransaction();
-            session.save(t);
+            session.save(dog);
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             session.close();
         }
-    }
-
-    @Override
-    public void addDog(Dog dog) {
-        addEntity((T) dog);
     }
 
     @Override
@@ -173,26 +166,6 @@ public class DogRepositorySQLImpl<T> implements DogRepository {
         }
     }
 
-    @Override
-    public void addPhoto(Photo photo) {
-        addEntity((T) photo);
-    }
 
-    @Override
-    public List<Breed> getBreeds() {
-        List<Breed> breeds = new ArrayList<>();
-        Session session = null;
-        try {
-            session = factory.openSession();
-            session.beginTransaction();
-            breeds = session.createQuery("FROM Breed").list();
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
 
-        return breeds;
-    }
 }

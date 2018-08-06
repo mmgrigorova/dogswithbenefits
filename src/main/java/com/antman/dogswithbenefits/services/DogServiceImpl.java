@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 public class DogServiceImpl implements DogService {
-    private static final int RESULTS_PER_PAGE = 15;
+    private static final int RESULTS_PER_PAGE = 100;
     private DogRepository repository;
 
     @Autowired

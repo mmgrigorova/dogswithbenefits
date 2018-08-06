@@ -10,6 +10,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/dogs")
 public class DogWebController {
@@ -20,11 +22,17 @@ public class DogWebController {
         this.service = service;
     }
 
-    @GetMapping("/list")
-    public ModelAndView listDogs(){
+    @GetMapping("/list/{page}")
+    public ModelAndView listDogs(@PathVariable(name = "page", required=false) Optional<Integer> pageNumber){
         ModelAndView mav = new ModelAndView("dogs/dogs");
         mav.addObject("title", "Our Dogs");
-        mav.addObject("dogs", service.getAllDogs());
+        if(pageNumber.isPresent()){
+            mav.addObject("dogs", service.getPageOfDogs(1));
+        } else {
+            int page = pageNumber.get();
+            mav.addObject("dogs", service.getPageOfDogs(page));
+        }
+//        mav.addObject("dogs", service.getAllDogs());
         return mav;
     }
 

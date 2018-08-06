@@ -48,12 +48,17 @@ public class DogRepositorySQLImpl<T> implements DogRepository {
     public List<Dog> getPageOfDogs(int startPosition, int rowsCount) {
         List<Dog> dogs = new ArrayList<>();
         Session session = null;
-        int paginatedCount = 0;
         try{
+            session = factory.openSession();
+            session.beginTransaction();
             Query query = session.createQuery("FROM Dog");
             query.setFirstResult(startPosition);
             query.setMaxResults(rowsCount);
             dogs =  (List<Dog>) query.list();
+            for (Dog dog : dogs) {
+                dog.getPhoto();
+            }
+            session.getTransaction().commit();
         } catch (Exception e){
             e.printStackTrace();
         } finally {

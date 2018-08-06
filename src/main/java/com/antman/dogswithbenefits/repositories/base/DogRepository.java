@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface DogRepository {
     List<Dog> getAllDogs();
+    List<Dog> getPageOfDogs(int startPosition, int rowsCount);
     void addDog(Dog dog);
     Dog findById(int id);
     boolean update(Dog updateDog);

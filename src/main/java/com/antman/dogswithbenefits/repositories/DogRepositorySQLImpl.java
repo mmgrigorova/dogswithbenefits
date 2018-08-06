@@ -44,6 +44,26 @@ public class DogRepositorySQLImpl<T> implements DogRepository {
         return dogs;
     }
 
+    @Override
+    public List<Dog> getPageOfDogs(int startPosition, int rowsCount) {
+        List<Dog> dogs = new ArrayList<>();
+        Session session = null;
+        int paginatedCount = 0;
+        try{
+            Query query = session.createQuery("FROM Dog");
+            query.setFirstResult(startPosition);
+            query.setMaxResults(rowsCount);
+            dogs =  (List<Dog>) query.list();
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return dogs;
+    }
+
+
     private void addEntity(T t) {
         Session session = null;
         try {

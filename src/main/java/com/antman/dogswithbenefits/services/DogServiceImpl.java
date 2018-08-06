@@ -12,6 +12,7 @@ import java.util.List;
 
 @Service
 public class DogServiceImpl implements DogService {
+    private static final int RESULTS_PER_PAGE = 3;
     private DogRepository repository;
 
     @Autowired
@@ -30,6 +31,11 @@ public class DogServiceImpl implements DogService {
     @Override
     public List<Dog> getAllDogs() {
         return repository.getAllDogs();
+    }
+
+    @Override
+    public List<Dog> getPageOfDogs(int pageNumber) {
+        return repository.getPageOfDogs(pageNumber, RESULTS_PER_PAGE);
     }
 
     @Override

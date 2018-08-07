@@ -32,7 +32,7 @@
         <label th:for="breed">Breed</label>
         <select th:field="*{breed.id}">
             <option th:each="breed : ${breeds}"
-                    th:text="${breed.name}"/>
+                    th:text="${breed.name}"
                     th:value="${breed.id}"></option>
         </select>
     </div>

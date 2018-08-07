@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 public class DogServiceImpl implements DogService {
-    private static final int RESULTS_PER_PAGE = 12;
+    private static final int RESULTS_PER_PAGE = 24;
 
     private DogRepository repository;
     private PhotoRepository photoRepository;
@@ -42,7 +42,9 @@ public class DogServiceImpl implements DogService {
 
     @Override
     public List<Dog> getPageOfDogs(int pageNumber) {
-        return repository.getPageOfDogs(pageNumber, RESULTS_PER_PAGE);
+        // We are passing page 1, but we need page 0 as response
+        int offsetPageNumber = pageNumber - 1;
+        return repository.getPageOfDogs(offsetPageNumber, RESULTS_PER_PAGE);
     }
 
     @Override

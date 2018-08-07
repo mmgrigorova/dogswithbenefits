@@ -1,6 +1,6 @@
 package com.antman.dogswithbenefits.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
@@ -14,7 +14,7 @@ public class Photo {
 
     @ManyToOne
     @JoinColumn(name = "dogid")
-    @JsonIgnore
+    @JsonIgnoreProperties("photos")
     private Dog dog;
 
     @Column(name = "photo")

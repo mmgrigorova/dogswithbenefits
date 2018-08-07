@@ -88,10 +88,6 @@ public class DogRepositorySQLImpl implements DogRepository {
         try {
             session = factory.openSession();
             session.beginTransaction();
-//            ScrollableResults scrollableResults = getCriteria(session).scroll();
-//            scrollableResults.last();
-//            scrollableResults.close();
-
             Criteria criteria = session.createCriteria(Dog.class);
             criteria.setFirstResult(startPosition);
             criteria.setMaxResults(rowsCount);

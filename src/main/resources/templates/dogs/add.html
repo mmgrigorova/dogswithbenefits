@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments::head"></head>
-<body class="container">
+<body>
 <nav th:replace="fragments :: navigation"></nav>
-<h1 th:text="${title}" class="header">List of dogs</h1>
-
-
+<main class="container">
+    <h1 th:text="${title}" class="header">List of dogs</h1>
 <form method="post" style="max-width:600px;" th:object="${dog}">
     <div class="form-group">
         <label th:for="name">Dog Name</label>

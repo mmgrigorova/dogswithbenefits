@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Math.toIntExact;
+
 // TODO - Create separate repository for photos
 
 @Repository
@@ -32,11 +34,13 @@ public class DogRepositorySQLImpl implements DogRepository {
     public void setAllDogsCount() {
         Session session = null;
         try {
+            Long tempDogsCount = 0l;
             session = factory.openSession();
             session.beginTransaction();
-            allDogsCount = (Integer) session.createCriteria(Dog.class)
+            tempDogsCount = (Long) session.createCriteria(Dog.class)
                     .setProjection(Projections.rowCount())
                     .uniqueResult();
+           allDogsCount = toIntExact(tempDogsCount);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

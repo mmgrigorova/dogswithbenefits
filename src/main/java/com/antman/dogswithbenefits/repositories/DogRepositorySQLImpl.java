@@ -15,21 +15,33 @@ import java.util.List;
 // TODO - Create separate repository for photos
 
 @Repository
-public class DogRepositorySQLImpl implements DogRepository{
+public class DogRepositorySQLImpl implements DogRepository {
     private static SessionFactory factory;
     private static int allDogsCount = 0;
 
     @Autowired
     public DogRepositorySQLImpl(SessionFactory factory) {
         this.factory = factory;
+        setAllDogsCount();
     }
 
     public int getAllDogsCount() {
         return allDogsCount;
     }
 
-    public void setAllDogsCount(int allDogsCount) {
-        DogRepositorySQLImpl.allDogsCount = allDogsCount;
+    public void setAllDogsCount() {
+        Session session = null;
+        try {
+            session = factory.openSession();
+            session.beginTransaction();
+            allDogsCount = (Integer) session.createCriteria(Dog.class)
+                    .setProjection(Projections.rowCount())
+                    .uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 
     private static Criteria getCriteria(final Session session) {
@@ -72,11 +84,9 @@ public class DogRepositorySQLImpl implements DogRepository{
         try {
             session = factory.openSession();
             session.beginTransaction();
-            ScrollableResults scrollableResults = getCriteria(session).scroll();
-            scrollableResults.last();
-            totalRecords = scrollableResults.getRowNumber()+1;
-            setAllDogsCount(totalRecords);
-            scrollableResults.close();
+//            ScrollableResults scrollableResults = getCriteria(session).scroll();
+//            scrollableResults.last();
+//            scrollableResults.close();
 
             Criteria criteria = session.createCriteria(Dog.class);
             criteria.setFirstResult(startPosition);
@@ -165,7 +175,6 @@ public class DogRepositorySQLImpl implements DogRepository{
             session.close();
         }
     }
-
 
 
 }

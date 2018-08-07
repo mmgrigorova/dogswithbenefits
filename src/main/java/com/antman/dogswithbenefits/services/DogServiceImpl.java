@@ -47,9 +47,13 @@ public class DogServiceImpl implements DogService {
 
     @Override
     public int getDogPagesCount() {
-        int isEvenDogCount = repository.getAllDogsCount()%RESULTS_PER_PAGE;
-        int pages = repository.getAllDogsCount()/RESULTS_PER_PAGE;
-        return isEvenDogCount == 0 ? pages : pages+1;
+        int pages = repository.getAllDogsCount() / RESULTS_PER_PAGE;
+        int dogsPerPageCalculationHelper = repository.getAllDogsCount() % RESULTS_PER_PAGE;
+        if (dogsPerPageCalculationHelper > 0 || dogsPerPageCalculationHelper < RESULTS_PER_PAGE) {
+            pages += 1;
+        }
+
+        return pages;
     }
 
     @Override

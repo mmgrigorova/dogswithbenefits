@@ -47,6 +47,9 @@ a:hover {
   margin: 10px;
 }
 
+.doggy-container{
+    margin: 10px 0px;
+}
 
 .circular {
     width: 200px;

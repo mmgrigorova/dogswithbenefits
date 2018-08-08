@@ -26,9 +26,12 @@
                                  th:src="@{/images/defaultdoggyfem.jpg}"/>
                         </div>
                         <p th:text="${dog.name}">Doggy name</p>
-                        <p th:text="${dog.breed.name}"></p>
-                        <p th:text="${dog.gender}"></p>
-                        <p th:text="${dog.age}"></p>
+                        <p class="two-line-text" th:text="${dog.breed.name}"></p>
+                        <div th:switch="${dog.gender}">
+                            <p th:case="'m'">Male</p>
+                            <p th:case="'f'">Female</p>
+                        </div>
+                        <p><span th:text="${dog.age}"></span>&nbsp;years old</p>
                         <a th:href="@{/dogs/dog_profile(dogId=${dog.id})}" class="a-link btn btn-info">
                             Go to full profile
                         </a>
@@ -54,7 +57,7 @@
                                  th:src="@{/images/defaultdoggyfem.jpg}"/>
                         </div>
                         <p th:text="${dog.name}">Doggy name</p>
-                        <p th:text="${dog.breed.name}"></p>
+                        <p class="two-line-text" th:text="${dog.breed.name}"></p>
                         <p th:text="${dog.gender}"></p>
                         <p th:text="${dog.age}"></p>
                         <a th:href="@{/dogs/dog_profile(dogId=${dog.id})}" class="a-link btn btn-info">

@@ -1,6 +1,9 @@
 package com.antman.dogswithbenefits.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -16,6 +19,7 @@ public class Dog {
     private User owner;
 
     @Column(name = "name")
+    @Size(min = 3,max = 13,message = "Name field is required")
     private String name;
 
     @Column(name = "gender")
@@ -30,9 +34,12 @@ public class Dog {
     private Breed secondaryBreed;
 
     @Column(name = "age")
+    @Min(value = 0, message = "Age should not be less than 0")
+    @Max(value = 100, message = "Age should not be greater than 100")
     private int age;
 
     @Column(name = "weight")
+    @Min(value = 0, message = "Weight should not be less than 0")
     private int weight;
 
     @Column(name = "description")

@@ -24,4 +24,6 @@ public class DogServiceImpl_Tests {
 //        when(dogRepository.addDog(any(Dog.class)))
 //                .then(dogs.add(any(Dog.class)));
 //    }
-}
+
+    //TODO Research how to validated the parameter that is passed to a method (to the repository.add method)
+ }

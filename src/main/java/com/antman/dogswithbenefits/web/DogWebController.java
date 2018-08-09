@@ -10,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -65,7 +66,7 @@ public class DogWebController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddDogForm(@ModelAttribute Dog newDog,
+    public String processAddDogForm(@Valid @ModelAttribute Dog newDog,
                                     Errors errors, Model model) {
 
         if (errors.hasErrors()) {

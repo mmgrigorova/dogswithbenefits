@@ -7,8 +7,8 @@
     <h1 th:text="${title}" class="header">List of dogs</h1>
     <small th:if="deleteMessage" th:text="${deleteMessage}"></small>
     <article class="dog-grid">
-        <div th:each="dog : ${dogs}" class="doggy-thumbnail col-sm-3 border">
-            <div class="circular" th:if="${!dog.photos.isEmpty()}">
+        <div th:each="dog : ${dogs}" class="doggy-thumbnail col-sm-3">
+            <div class="circular" th:unless="${dog.photos.isEmpty()}">
                 <img th:src="${dog.photos[0].path}"/>
             </div>
             <div class="circular mid-opacity" th:if="${dog.photos.isEmpty()}">
@@ -17,7 +17,7 @@
                 <img th:if="${dog.gender} == 'f'"
                      th:src="@{/images/defaultdoggyfem.jpg}"/>
             </div>
-            <p th:text="${dog.name}">Doggy name</p>
+            <p th:text="${dog.name}" class="font-weight-bold">Doggy name</p>
             <p class="two-line-text" th:text="${dog.breed.name}"></p>
             <div th:switch="${dog.gender}">
                 <p th:case="'m'">Male</p>
@@ -47,6 +47,7 @@
     </article>
 
 </main>
+<section th:replace="fragments::footer"></section>
 <th:block th:include="fragments :: assets"></th:block>
 </body>
 </html>

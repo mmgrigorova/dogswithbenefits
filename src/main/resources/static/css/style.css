@@ -52,8 +52,14 @@ a:hover {
 }
 
 .profile-image-container img {
-    height: 100%;
+    max-height: 100%;
     width: 100%;
+}
+
+.additional-images{
+    margin: 0px 5px;
+    max-width: 100%;
+    max-height: 300px;
 }
 
 .dog-profile-info {
@@ -65,7 +71,7 @@ a:hover {
 }
 
 .doggy-thumbnail {
-    margin: 5px;
+    margin: 15px;
     width: 22%;
     display: inline-block;
     padding: 15px;
@@ -77,6 +83,7 @@ a:hover {
     border-radius: 50%;
     position: relative;
     overflow: hidden;
+    margin-bottom: 20px;
 }
 
 .circular img {
@@ -168,4 +175,8 @@ article {
 .lobster {
     font-family: 'Lobster', cursive;
     font-size: 2em;
+}
+
+.container{
+    padding-bottom: 40px;
 }

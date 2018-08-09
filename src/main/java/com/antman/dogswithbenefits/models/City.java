@@ -48,4 +48,12 @@ public class City {
     public void setCountry(Country country) {
         this.country = country;
     }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
 }

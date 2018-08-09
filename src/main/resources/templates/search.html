@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head">
+</head>
+<nav th:replace="fragments :: navigation"></nav>
+<body>
+    <form method="POST"  th:action="@{/search}" th:object="${params}" class="reg_form">
+        <div>
+            <h3>Search By</h3>
+            <input type="radio" name="search" value="breed" th:field="*{searchType}"/>Breed
+            <input type="radio" name="search" value="gender" th:field="*{searchType}"/>Gender
+            <input type="radio" name="search" value="city" th:field="*{searchType}"/>City
+            <input type="radio" name="search" value="name" th:field="*{searchType}"/> Name
+        </div>
+        <div>
+            <label for="search"></label>
+            <input type="text" name="search" id="search" th:field="*{searchInput}"/>
+        </div>
+        <input type="submit" value="Search"/>
+    </form>
+    <!--<div>-->
+        <!--<form action="/search" method="post">-->
+            <!--<input type="submit"/>-->
+        <!--</form>-->
+    <!--</div>-->
+</body>
+</html>

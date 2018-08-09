@@ -91,4 +91,9 @@ public class DogServiceImpl implements DogService {
     public static int getResultsPerPage() {
         return RESULTS_PER_PAGE;
     }
+
+    @Override
+    public List<Dog> searchFilter(String input, String choice){
+        return repository.searchFilter(input, choice);
+    }
 }

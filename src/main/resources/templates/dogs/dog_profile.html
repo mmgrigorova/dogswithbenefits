@@ -8,7 +8,7 @@
     <section class="clarfix-after clearfix">
         <section class="row dog-profile-info">
             <div class="col-lg-3 inline-block">
-                <div th:if="${!dog.photos.isEmpty()}" th:each="photo : ${dog.photos}"
+                <div th:unless="${dog.photos.isEmpty()}" th:each="photo : ${dog.photos}"
                      class="profile-image-container inline-block">
                     <img th:src="${photo.path}"/>
                 </div>

@@ -44,11 +44,9 @@ a:hover {
 }
 
 .doggy-thumbnail{
-  margin: 10px;
-}
-
-.doggy-container{
-    margin: 10px 0px;
+    margin: 15px;
+    width: 22%;
+    display: inline-block;
 }
 
 .circular {

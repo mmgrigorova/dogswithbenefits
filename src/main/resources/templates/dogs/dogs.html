@@ -7,7 +7,7 @@
     <h1 th:text="${title}" class="header">List of dogs</h1>
     <small th:if="deleteMessage" th:text="${deleteMessage}"></small>
     <article class="dog-grid">
-        <div th:each="dog : ${dogs}" class="doggy-thumbnail col-sm-3 border-bottom ">
+        <div th:each="dog : ${dogs}" class="doggy-thumbnail col-sm-3 border">
             <div class="circular" th:if="${!dog.photos.isEmpty()}">
                 <img th:src="${dog.photos[0].path}"/>
             </div>

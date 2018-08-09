@@ -2,6 +2,15 @@ body {
     color: #243B55;
 }
 
+.logo{
+    width: 100px;
+    margin-right: 20px;
+}
+
+h1{
+    margin-top: 15px;
+}
+
 a, .navbar  {
     color: #FFC300;
 }
@@ -44,9 +53,10 @@ a:hover {
 }
 
 .doggy-thumbnail{
-    margin: 15px;
+    margin: 5px;
     width: 22%;
     display: inline-block;
+    padding: 15px;
 }
 
 .circular {

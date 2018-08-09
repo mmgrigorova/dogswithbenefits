@@ -16,13 +16,13 @@ import java.util.List;
 public class DogServiceImpl implements DogService {
     private static final int RESULTS_PER_PAGE = 24;
 
-    private final DogRepository repository;
+    private final DogRepository dogRepository;
     private final PhotoRepository photoRepository;
     private final BreedRepository breedRepository;
 
     @Autowired
     public DogServiceImpl(DogRepository repository, PhotoRepository photoRepository, BreedRepository breedRepository) {
-        this.repository = repository;
+        this.dogRepository = repository;
         this.photoRepository = photoRepository;
         this.breedRepository = breedRepository;
     }
@@ -32,26 +32,27 @@ public class DogServiceImpl implements DogService {
         if (dog.getSecondaryBreed() == null || dog.getSecondaryBreed().getId() == 0) {
             dog.setSecondaryBreed(null);
         }
-        repository.addDog(dog);
+        dogRepository.addDog(dog);
     }
 
     @Override
     public List<Dog> getAllDogs() {
-        return repository.getAllDogs();
+        return dogRepository.getAllDogs();
     }
 
     @Override
     public List<Dog> getPageOfDogs(int pageNumber) {
         // We are passing page 1, but we need page 0 as response
         int offsetPageNumber = pageNumber - 1;
-        return repository.getPageOfDogs(offsetPageNumber, RESULTS_PER_PAGE);
+        return dogRepository.getPageOfDogs(offsetPageNumber, RESULTS_PER_PAGE);
     }
 
     @Override
     public int getDogPagesCount() {
-        int pages = repository.getAllDogsCount() / RESULTS_PER_PAGE;
-        int dogsPerPageCalculationHelper = repository.getAllDogsCount() % RESULTS_PER_PAGE;
-        boolean needExtraDisplayOddRemainingDogs = dogsPerPageCalculationHelper > 0 || dogsPerPageCalculationHelper < RESULTS_PER_PAGE;
+        int allDogsCount = dogRepository.getAllDogsCount();
+        int pages = allDogsCount / RESULTS_PER_PAGE;
+        int dogsPerPageCalculationHelper = allDogsCount % RESULTS_PER_PAGE;
+        boolean needExtraDisplayOddRemainingDogs = dogsPerPageCalculationHelper > 0;
         if (needExtraDisplayOddRemainingDogs) {
             pages += 1;
         }
@@ -61,20 +62,20 @@ public class DogServiceImpl implements DogService {
 
     @Override
     public Dog fingById(int id) {
-        return repository.findById(id);
+        return dogRepository.findById(id);
     }
 
     @Override
     public Dog update(Dog dog) {
-        repository.update(dog);
+        dogRepository.update(dog);
         Dog result = fingById(dog.getId());
         return result;
     }
 
     @Override
     public boolean delete(int dogId) {
-        Dog dog = repository.findById(dogId);
-        return repository.delete(dog);
+        Dog dog = dogRepository.findById(dogId);
+        return dogRepository.delete(dog);
     }
 
     @Override
@@ -85,5 +86,9 @@ public class DogServiceImpl implements DogService {
     @Override
     public List<Breed> getBreeds() {
         return breedRepository.getBreeds();
+    }
+
+    public static int getResultsPerPage() {
+        return RESULTS_PER_PAGE;
     }
 }

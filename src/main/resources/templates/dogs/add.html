@@ -3,7 +3,7 @@
 <head th:replace="fragments::head"></head>
 <body>
 <nav th:replace="fragments :: navigation"></nav>
-<main class="container">
+<main class="container" th:fragment="adddog">
     <h1 th:text="${title}" class="header">List of dogs</h1>
     <form method="post" style="max-width:600px;" th:object="${dog}">
         <div class="form-group">
@@ -11,9 +11,8 @@
             <input class="form-control" th:field="*{name}"/>
             <small class="error" th:errors="*{name}"></small>
         </div>
-        <input type="text" th:type="text"
+        <input th:type="hidden"
                th:field="*{owner.userId}"
-               th:value="3"
                placeholder="3" id="ownerid"/>
         <div class="form-group">
             <label th:for="age">Age</label>
@@ -59,5 +58,6 @@
         <input type="submit" value="Create Dog" class="btn btn-primary"/>
     </form>
     <th:block th:include="fragments :: assets"></th:block>
+</main>
 </body>
 </html>

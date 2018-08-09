@@ -14,5 +14,6 @@ public interface DogService {
     boolean delete(int dogId);
     void addPhoto(Photo photo);
     List<Breed> getBreeds();
+    List<Dog> searchFilter(String input, String choice);
 
 }

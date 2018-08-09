@@ -1,6 +1,7 @@
 package com.antman.dogswithbenefits.repositories.base;
 
 import com.antman.dogswithbenefits.models.Breed;
+import com.antman.dogswithbenefits.models.City;
 import com.antman.dogswithbenefits.models.Dog;
 import com.antman.dogswithbenefits.models.Photo;
 
@@ -14,4 +15,6 @@ public interface DogRepository {
     boolean delete(Dog deleteDog);
     void addPhoto(Photo photo);
     List<Breed> getBreeds();
+
+    List<Dog> searchFilter(String input, String choice);
 }

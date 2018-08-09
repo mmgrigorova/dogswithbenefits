@@ -59,4 +59,9 @@ public class DogServiceImpl implements DogService {
     public List<Breed> getBreeds() {
         return repository.getBreeds();
     }
+
+    @Override
+    public List<Dog> searchFilter(String input, String choice){
+        return repository.searchFilter(input, choice);
+    }
 }

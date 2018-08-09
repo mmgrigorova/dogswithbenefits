@@ -16,9 +16,9 @@ import java.util.List;
 public class DogServiceImpl implements DogService {
     private static final int RESULTS_PER_PAGE = 24;
 
-    private DogRepository repository;
-    private PhotoRepository photoRepository;
-    private BreedRepository breedRepository;
+    private final DogRepository repository;
+    private final PhotoRepository photoRepository;
+    private final BreedRepository breedRepository;
 
     @Autowired
     public DogServiceImpl(DogRepository repository, PhotoRepository photoRepository, BreedRepository breedRepository) {
@@ -51,7 +51,8 @@ public class DogServiceImpl implements DogService {
     public int getDogPagesCount() {
         int pages = repository.getAllDogsCount() / RESULTS_PER_PAGE;
         int dogsPerPageCalculationHelper = repository.getAllDogsCount() % RESULTS_PER_PAGE;
-        if (dogsPerPageCalculationHelper > 0 || dogsPerPageCalculationHelper < RESULTS_PER_PAGE) {
+        boolean needExtraDisplayOddRemainingDogs = dogsPerPageCalculationHelper > 0 || dogsPerPageCalculationHelper < RESULTS_PER_PAGE;
+        if (needExtraDisplayOddRemainingDogs) {
             pages += 1;
         }
 

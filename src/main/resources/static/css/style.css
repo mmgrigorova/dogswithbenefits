@@ -24,8 +24,12 @@ a:hover {
     text-align: center;
 }
 
+.jumbotron{
+    margin: 0px;
+}
+
 .highlights {
-    background-color:#fffdb7;
+    background-color:#fec300;
 }
 
 .highlights-box{

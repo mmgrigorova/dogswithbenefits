@@ -23,12 +23,15 @@
 </head>
 <body>
 <nav th:fragment="navigation" class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a href="/index"><img src="../images/logo_black.png" class="logo"></a>
     <a href="/index">Home</a>&nbsp;|&nbsp;
     <a href="/registration">Register User</a>&nbsp;|&nbsp;
     <a href="/dogs/list">List Dogs</a>&nbsp;|&nbsp;
     <a href="/dogs/add">Add Dog</a>
 </nav>
-
+<section th:fragment="footer" class="jumbotron text-center">
+    <small>Team Ant-Man - Telerik Academy 2018</small>
+</section>
 
 <th:block th:fragment="assets">
     <script src="../script/dogsScript.js"></script>

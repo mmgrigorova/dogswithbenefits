@@ -2,7 +2,16 @@ body {
     color: #243B55;
 }
 
-a, .navbar  {
+.logo {
+    width: 100px;
+    margin-right: 20px;
+}
+
+h1 {
+    margin-top: 15px;
+}
+
+a, .navbar {
     color: #FFC300;
 }
 
@@ -11,12 +20,24 @@ a:hover {
     text-decoration: none;
 }
 
-.text-center{
+.text-center {
     text-align: center;
 }
 
+.jumbotron{
+    margin: 0px;
+}
+
+.highlights {
+    background-color:#fec300;
+}
+
+.highlights-box{
+    padding: 40px 10px;
+}
+
 .main-image {
-    height: 70vh;
+    height: 53vh;
     background: url(../images/back.jpg) no-repeat;
     background-size: contain;
     background-position-x: 100%;
@@ -31,24 +52,29 @@ a:hover {
 }
 
 .profile-image-container img {
-    height: 100%;
+    max-height: 100%;
     width: 100%;
 }
 
-.dog-profile-info{
+.additional-images{
+    margin: 0px 5px;
+    max-width: 100%;
+    max-height: 300px;
+}
+
+.dog-profile-info {
     vertical-align: top;
 }
 
-.dog-grid{
+.dog-grid {
     color: #243B55;
 }
 
-.doggy-thumbnail{
-  margin: 10px;
-}
-
-.doggy-container{
-    margin: 10px 0px;
+.doggy-thumbnail {
+    margin: 15px;
+    width: 22%;
+    display: inline-block;
+    padding: 15px;
 }
 
 .circular {
@@ -57,7 +83,9 @@ a:hover {
     border-radius: 50%;
     position: relative;
     overflow: hidden;
+    margin-bottom: 20px;
 }
+
 .circular img {
     min-width: 100%;
     min-height: 100%;
@@ -72,11 +100,12 @@ a:hover {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
-.doggy-thumbnail img{
+
+.doggy-thumbnail img {
     width: 100%;
 }
 
-.doggy-thumbnail a{
+.doggy-thumbnail a {
     width: 100%;
     display: inline-block;
     padding: 5px;
@@ -86,17 +115,17 @@ a:hover {
     margin: 10px 0px;
 }
 
-.two-line-text{
+.two-line-text {
     line-height: 1.5em;
     min-height: 3em;
     overflow: hidden;
 }
 
-.doggy-thumbnail a:hover{
+.doggy-thumbnail a:hover {
     background-color: #FF5733;
 }
 
-h5{
+h5 {
     font-size: 0.8em;
     color: #7CB342;
     margin: 10px 0 0 0;
@@ -139,11 +168,15 @@ article {
     display: table;
 }
 
-.mid-opacity{
+.mid-opacity {
     opacity: 0.5;
 }
 
-.lobster{
+.lobster {
     font-family: 'Lobster', cursive;
     font-size: 2em;
+}
+
+main{
+    padding-bottom: 40px;
 }

@@ -4,8 +4,8 @@
 <body>
 <nav th:replace="fragments :: navigation"></nav>
 <main class="container" th:fragment="adddog">
-    <h3>Create An Account</h3>
-    <form method="POST" action="#" th:action="@{/registration}" th:object="${user}">
+    <h1>Create an Account</h1>
+    <form method="POST" action="#" th:action="@{/registration}" th:object="${user}" style="max-width:600px;">
         <div class="form-group">
             <label for="fName">First Name</label>
             <input type="text" class="form-control" th:field="*{firstName}" name="fName" id="fName" required="required"/>

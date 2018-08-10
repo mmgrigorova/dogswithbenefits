@@ -6,7 +6,7 @@
 <body>
 <main class="container">
     <form method="POST"  th:action="@{/search}" th:object="${params}" class="reg_form">
-        <h3>Search By</h3>
+        <h1>Search By</h1>
         <div class="form-check form-check-inline">
             <input type="radio" class="form-check form-check-inline" name="search" value="breed" th:field="*{searchType}"/>
             <label class="form-check-label">Breed</label>
@@ -31,74 +31,33 @@
         </div>
     </form>
 
-    <div th:each="dog, row: ${dogs}" th:with="numList=${ {3,2,1,0} }" th:if="${row.count % 4 == 0 or row.last}"
-         class="row" th:onclick="dogInfo">
-        <!-- Show all rows except the leftovers -->
-        <span th:each="num : ${numList}"
-              th:with="dataIndex=(${row.index} - ${num})"
-              th:if="${row.count % 4 == 0}"
-              class="col-sm-3 border-bottom doggy-container">
-
-                    <div class="doggy-thumbnail" th:with="dog=${dogs[dataIndex]}">
-                        <div class="circular" th:if="${!dog.photos.isEmpty()}">
-                            <img th:src="${dogs[dataIndex].photos[0].path}"/>
-                        </div>
-                          <div class="circular mid-opacity" th:if="${dog.photos.isEmpty()}">
-                            <img th:if="${dog.gender} == 'm'"
-                                 th:src="@{/images/defaultdoggy.jpg}"/>
-                            <img th:if="${dog.gender} == 'f'"
-                                 th:src="@{/images/defaultdoggyfem.jpg}"/>
-                        </div>
-                        <p th:text="${dog.name}">Doggy name</p>
-                        <p class="two-line-text" th:text="${dog.breed.name}"></p>
-                        <div th:switch="${dog.gender}">
-                            <p th:case="'m'">Male</p>
-                            <p th:case="'f'">Female</p>
-                        </div>
-                        <p><span th:text="${dog.age}"></span>&nbsp;years old</p>
-                        <a th:href="@{/dogs/dog_profile(dogId=${dog.id})}" class="a-link btn btn-info">
-                            Go to full profile
-                        </a>
-                        <!--TODO Add confirmation for deletion-->
-                     <form th:action="@{'delete/{id}'(id=${dog.id})}" th:method="delete" method="delete">
-                            <button type="submit" id="deleteButton"
-                                    class="btn btn-outline-danger btn-sm">Delete</button>
-                        </form>
-                    </div>
-
-            </span>
-        <!-- Show the remainders (eg, if there are 9 items, the last row will have one item in it) -->
-        <span th:each="num : ${numList}" th:with="dataIndex=(${row.index} - ${num})"
-              th:if="${row.last} and ${row.count % 4 != 0} and ${num &lt; row.count % 4}"
-              class="col-sm-3 border-bottom doggy-container">
-                 <div class="doggy-thumbnail" th:with="dog=${dogs[dataIndex]}">
-                        <div class="circular" th:if="${!dog.photos.isEmpty()}">
-                            <img th:src="${dogs[dataIndex].photos[0].path}"/>
-                        </div>
-                          <div class="circular mid-opacity" th:if="${dog.photos.isEmpty()}">
-                            <img th:if="${dog.gender} == 'm'"
-                                 th:src="@{/images/defaultdoggy.jpg}"/>
-                            <img th:if="${dog.gender} == 'f'"
-                                 th:src="@{/images/defaultdoggyfem.jpg}"/>
-                        </div>
-                        <p th:text="${dog.name}">Doggy name</p>
-                        <p class="two-line-text" th:text="${dog.breed.name}"></p>
-                        <div th:switch="${dog.gender}">
-                            <p th:case="'m'">Male</p>
-                            <p th:case="'f'">Female</p>
-                        </div>
-                        <p><span th:text="${dog.age}"></span>&nbsp;years old</p>
-                        <a th:href="@{/dogs/dog_profile(dogId=${dog.id})}" class="a-link btn btn-info">
-                            Go to full profile
-                        </a>
-                     <form th:action="@{'delete/{id}'(id=${dog.id})}" th:method="delete" method="delete">
-                            <button type="submit" id="deleteButton"
-                                    class="btn btn-outline-danger btn-sm">Delete</button>
-                        </form>
-                    </div>
-            </span>
+    <div th:each="dog : ${dogs}" class="doggy-thumbnail col-sm-3">
+        <div class="circular" th:unless="${dog.photos.isEmpty()}">
+            <img th:src="${dog.photos[0].path}"/>
+        </div>
+        <div class="circular mid-opacity" th:if="${dog.photos.isEmpty()}">
+            <img th:if="${dog.gender} == 'm'"
+                 th:src="@{/images/defaultdoggy.jpg}"/>
+            <img th:if="${dog.gender} == 'f'"
+                 th:src="@{/images/defaultdoggyfem.jpg}"/>
+        </div>
+        <p th:text="${dog.name}" class="font-weight-bold">Doggy name</p>
+        <p class="two-line-text" th:text="${dog.breed.name}"></p>
+        <div th:switch="${dog.gender}">
+            <p th:case="'m'">Male</p>
+            <p th:case="'f'">Female</p>
+        </div>
+        <p><span th:text="${dog.age}"></span>&nbsp;years old</p>
+        <a th:href="@{/dogs/dog_profile(dogId=${dog.id})}" class="a-link btn btn-info">
+            Go to full profile
+        </a>
+        <!--TODO Add confirmation for deletion-->
+        <form th:action="@{'delete/{id}'(id=${dog.id})}" th:method="delete" method="delete">
+            <button type="submit" id="deleteButton"
+                    class="btn btn-outline-danger btn-sm">Delete
+            </button>
+        </form>
     </div>
-
 </main>
 </body>
 </html>

@@ -34,7 +34,7 @@ public class SearchController {
             System.out.print(dog.getName());
         }
         model.addAttribute("params",new SearchParams());
-        //model.addAttribute("dogs", dogs);
+        model.addAttribute("dogs", dogs);
         return "search";
     }
 

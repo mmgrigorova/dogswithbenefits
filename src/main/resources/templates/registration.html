@@ -1,57 +1,56 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <title>Registration</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="/static/css/reg.css">
-</head>
+<head th:replace="fragments::head"></head>
 <body>
-<div class="form_container">
+<nav th:replace="fragments :: navigation"></nav>
+<main class="container" th:fragment="adddog">
     <h3>Create An Account</h3>
-    <form method="POST" action="#" th:action="@{/registration}" th:object="${user}" class="reg_form">
-        <div>
+    <form method="POST" action="#" th:action="@{/registration}" th:object="${user}">
+        <div class="form-group">
             <label for="fName">First Name</label>
-            <input type="text" th:field="*{firstName}" name="fName" id="fName" required="required"/>
+            <input type="text" class="form-control" th:field="*{firstName}" name="fName" id="fName" required="required"/>
         </div>
-        <div>
+        <div class="form-group">
             <label for="lName">Last Name</label>
-            <input type="text" th:field="*{lastName}" name="lName" id="lName" required="required"/>
+            <input type="text"  class="form-control" th:field="*{lastName}" name="lName" id="lName" required="required"/>
         </div>
-        <div>
+        <div class="form-group">
             <label for="mail">Mail</label>
-            <input type="email" th:field="*{email}" name="mail" id="mail"/>
+            <input type="email" class="form-control" th:field="*{email}" name="mail" id="mail"/>
         </div>
-        <div>
+        <div class="form-group">
             <label for="pass">Password</label>
-            <input type="password" th:field="*{password}" name="pass" id="pass" required="required"/>
+            <input type="password" class="form-control" th:field="*{password}" name="pass" id="pass" required="required"/>
         </div>
-        <div>
+        <div class="form-group">
             <label for="confirm">Confirm</label>
-            <input type="password" name="confirm" id="confirm" required="required"/>
+            <input type="password" class="form-control" name="confirm" id="confirm" required="required"/>
         </div>
-        <div>
+        <div class="form-group">
             <label for="country">Country</label>
-            <input type="text" th:field="*{address.city.country.countryName}" name="country" id="country" required="required"/>
+            <input type="text" class="form-control" th:field="*{address.city.country.countryName}" name="country" id="country" required="required"/>
         </div>
-        <div>
+        <div class="form-group">
             <label for="city">City</label>
-            <input type="text" th:field="*{address.city.name}" name="confirm" id="city" required="required"/>
+            <input type="text" class="form-control" th:field="*{address.city.name}" name="confirm" id="city" required="required"/>
         </div>
-        <div>
+        <div class="form-group">
             <label for="address">Address</label>
-            <input type="text" th:field="*{address.streetAddress}" name="address" id="address"/>
+            <input type="text" class="form-control" th:field="*{address.streetAddress}" name="address" id="address"/>
         </div>
-        <div>
+        <div class="form-group">
             <label for="postalCode">PO</label>
-            <input type="text" th:field="*{address.postalCode}" name="postalCode" id="postalCode" />
+            <input type="text" class="form-control" th:field="*{address.postalCode}" name="postalCode" id="postalCode" />
         </div>
         <div>
-            <input type="submit" name="submit" value="Sign Up">
+            <input type="submit" class="btn btn-primary" name="submit" value="Sign Up" >
         </div>
     </form>
-    <h1>Result</h1>
+
+    <!--
     <p th:text="'firstName: ' + ${user.firstName}"></p>
     <p th:text="'lastName: ' + ${user.lastName}"></p>
-</div>
+    -->
+</main>
 </body>
 </html>

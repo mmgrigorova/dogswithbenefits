@@ -2,9 +2,14 @@ package com.antman.dogswithbenefits.models;
 
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 @Component
 public class SearchParams {
+    @NotNull
     private String searchType;
+    @NotBlank
     private String searchInput;
 
     public SearchParams(){

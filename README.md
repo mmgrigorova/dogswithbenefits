@@ -7,3 +7,7 @@ Telerik Academy Alpha Java 2018 project.
 
 Technologies: 
 Spring, Hibernate, Thymeleaf, Bootstrap
+
+Sceenshot:
+
+![doglist](https://imgur.com/EqFNeEt.png)
